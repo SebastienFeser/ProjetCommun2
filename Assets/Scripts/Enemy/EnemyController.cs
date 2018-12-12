@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
     [SerializeField] private GameObject shootPrefab;
-    [SerializeField] private float shootInterval;
+    [SerializeField] private float shootIntervalMin, shootIntervalMax;
     [SerializeField] private beeType type;
     [SerializeField] private int life;
     public int Life
@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour {
 
             case beeType.shoot:
                 canShoot = true;
+                StartCoroutine("ShootTimer");
                 break;
 
             case beeType.fat:
@@ -36,7 +37,6 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
         if (canShoot)
         {
-            canShoot = false;
             StartCoroutine("ShootTimer");
             Invoke("Shoot",0);
         }
@@ -55,7 +55,9 @@ public class EnemyController : MonoBehaviour {
 
     IEnumerator ShootTimer()
     {
-        yield return new WaitForSeconds(shootInterval);
+        canShoot = false;
+        float RDMN = Random.Range(shootIntervalMin, shootIntervalMax);
+        yield return new WaitForSeconds(RDMN);
         canShoot = true;
     }
 }
