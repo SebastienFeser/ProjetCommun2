@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
+    [SerializeField] private GameObject particlesDeath;
     [SerializeField] private GameObject shootPrefab;
     [SerializeField] private float shootIntervalMin, shootIntervalMax;
     [SerializeField] private beeType type;
@@ -50,6 +51,7 @@ public class EnemyController : MonoBehaviour {
 
     public void DestroyBee()
     {
+        Instantiate(particlesDeath, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
