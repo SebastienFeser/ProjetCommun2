@@ -580,7 +580,7 @@ MonoBehaviour:
   - {fileID: 1902232063386308}
   - {fileID: 1957995557602614}
   - {fileID: 1930798836333468}
-  posTypes: 0100000001000000010000000100000001000000
+  posTypes: 0000000002000000020000000200000002000000
   beeNormal: {fileID: 1952771601013572, guid: 006fe02fd0407554b80a2e99fcdf25c7, type: 2}
   beeShoot: {fileID: 1263195300046328, guid: 032007e6eaa6dc44c889fc2ae99a55ae, type: 2}
   beeFat: {fileID: 1278644958920756, guid: be0d07f3bb8c55a40b4d59558d1f7e65, type: 2}
@@ -606,6 +606,7 @@ MonoBehaviour:
   speed: 0.5
   time: 2
   rowSpawnerScript: {fileID: 114106541121591722}
+  maxMove: 2
 --- !u!114 &114549357257249790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -621,7 +622,7 @@ MonoBehaviour:
   - {fileID: 1902232063386308}
   - {fileID: 1957995557602614}
   - {fileID: 1930798836333468}
-  posTypes: 0200000002000000020000000200000002000000
+  posTypes: 0200000002000000020000000200000000000000
   beeNormal: {fileID: 1952771601013572, guid: 006fe02fd0407554b80a2e99fcdf25c7, type: 2}
   beeShoot: {fileID: 1263195300046328, guid: 032007e6eaa6dc44c889fc2ae99a55ae, type: 2}
   beeFat: {fileID: 1278644958920756, guid: be0d07f3bb8c55a40b4d59558d1f7e65, type: 2}

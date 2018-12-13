@@ -118,7 +118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ac7190419ede545807c1010581f9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeFrisbee: 3
+  typeFrisbee: 4
+  normal: {fileID: 21300000, guid: c3827f1ae7c152847b3880793ef8bbc3, type: 3}
+  ice: {fileID: 21300000, guid: c3827f1ae7c152847b3880793ef8bbc3, type: 3}
+  gaz: {fileID: 21300000, guid: a9f6ec9937d23aa42ad7a466ad242057, type: 3}
+  electric: {fileID: 21300000, guid: 567f036268e71884bb7662d327c0e414, type: 3}
+  fire: {fileID: 21300000, guid: dd248343d8e9164459a1e4ff3841b14e, type: 3}
   frisbeeRigidbody: {fileID: 50896173945852940}
 --- !u!212 &212908491344424904
 SpriteRenderer:
