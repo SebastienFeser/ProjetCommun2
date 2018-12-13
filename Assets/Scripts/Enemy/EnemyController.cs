@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
+    public bool deleteme;
     [SerializeField] private GameObject particlesDeath;
     [SerializeField] private GameObject shootPrefab;
     [SerializeField] private float shootIntervalMin, shootIntervalMax;
@@ -14,10 +15,23 @@ public class EnemyController : MonoBehaviour {
         set { life = value; }
     }
 
-    private bool canShoot;
+    [SerializeField] private List<GameObject> nearEnemy;
+
     private enum beeType { normal, shoot, fat };
+    public enum deathType { fire, ice, normal, gaz, electric };
+    private deathType typeDeath;
+    public deathType TypeDeath
+    {
+        get { return typeDeath; }
+    }
+
+    private bool canShoot;
 
     void Start () {
+        if (deleteme)
+        {
+            Invoke("remove", 3);
+        }
         switch (type)
         {
             case beeType.normal:
@@ -49,10 +63,41 @@ public class EnemyController : MonoBehaviour {
         Instantiate(shootPrefab, transform.position, transform.rotation);   
     }
 
-    public void DestroyBee()
+    public void DestroyBee(deathType type)
     {
-        Instantiate(particlesDeath, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        switch (type)
+        {
+            case deathType.normal:
+                foreach(GameObject enemy in nearEnemy)
+                {
+                    Instantiate(particlesDeath, enemy.transform.position, Quaternion.identity);
+                    Destroy(enemy);
+                }
+                Instantiate(particlesDeath, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                break;
+
+            case deathType.electric:
+
+                break;
+
+            case deathType.fire:
+
+                break;
+
+            case deathType.gaz:
+
+                break;
+
+            case deathType.ice:
+
+                break;
+        }
+    }
+
+    public void AddNearEnemy(GameObject enemy)
+    {
+        nearEnemy.Add(enemy);
     }
 
     IEnumerator ShootTimer()
@@ -61,5 +106,10 @@ public class EnemyController : MonoBehaviour {
         float RDMN = Random.Range(shootIntervalMin, shootIntervalMax);
         yield return new WaitForSeconds(RDMN);
         canShoot = true;
+    }
+
+    void remove()
+    {
+        DestroyBee(deathType.normal);
     }
 }

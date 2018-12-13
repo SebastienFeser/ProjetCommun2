@@ -6,13 +6,13 @@ public class EnemySequence : MonoBehaviour {
     [SerializeField] private float moveLength;
     [SerializeField] private float speed, time;
     [SerializeField] private RowSpawner rowSpawnerScript;
+    [SerializeField] private const int maxMove = 5;
 
     private enum moveDir { up, down, left, right};
     private moveDir dir;
     private Vector3 destination;
 
     private bool hasToMove = true;
-    private const int maxMove = 5;
  
 
 	void Start () { 

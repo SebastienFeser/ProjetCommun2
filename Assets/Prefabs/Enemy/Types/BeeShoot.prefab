@@ -52,14 +52,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45d7aa3e50455f44bf31c93fb9944d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deleteme: 0
   particlesDeath: {fileID: 1387385673608712, guid: dcbfedc42a18c0a48b7aeb51cf85ef1b,
     type: 2}
   shootPrefab: {fileID: 1589294271507250, guid: 0070aab0484762e4c9322cf863afc4f2,
     type: 2}
-  shootIntervalMin: 2
-  shootIntervalMax: 5
+  shootIntervalMin: 1
+  shootIntervalMax: 2
   type: 1
   life: 1
+  nearEnemy: []
 --- !u!212 &212069582922725708
 SpriteRenderer:
   m_ObjectHideFlags: 1
