@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LaserMovements : MonoBehaviour {
 
@@ -8,7 +9,7 @@ public class LaserMovements : MonoBehaviour {
     [SerializeField] float maximumAngle = 45;
     [SerializeField] float frisbeeSpeed;
     [SerializeField] GameObject frisbeeGameObject;
-    [SerializeField] float pointerSpeed = 0.01f;
+    [SerializeField] float pointerSpeed;
 
     bool goLeft = true;
     bool calledOnceInFunction = true;
@@ -28,8 +29,13 @@ public class LaserMovements : MonoBehaviour {
     float frisbeeYVelocity;
     float pointerAngle;
     #endregion
-    
 
+    #region Used for Cooldown
+    [SerializeField] Image coolDownBar;
+    [SerializeField] float coolDownTime;
+    float coolDownBarSize = 100f;
+    bool canShoot = true;
+    #endregion
 
     void Start () {
         StartCoroutine("moveLeft");
@@ -37,19 +43,21 @@ public class LaserMovements : MonoBehaviour {
 	}
 	
 	void Update () {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && canShoot)
         {
             frisbeeVectorSpeed = SpeedCalculator();
             GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
             frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+            StartCoroutine("frisbeeCoolDown");
+            canShoot = false;
         }
 	}
 
     IEnumerator moveLeft()
     {
-        for(float i = minimumAngle; i < maximumAngle; i++)
+        for(float i = minimumAngle; i < maximumAngle; i+=2)
         {
-            transform.Rotate(0, 0, 1);
+            transform.Rotate(0, 0, 2);
             yield return new WaitForSeconds(pointerSpeed);
         }
 
@@ -59,13 +67,24 @@ public class LaserMovements : MonoBehaviour {
 
     IEnumerator moveRight()
     {
-        for (float i = maximumAngle; i > minimumAngle; i--)
+        for (float i = maximumAngle; i > minimumAngle; i-=2)
         {
-            transform.Rotate(0, 0, -1);
+            transform.Rotate(0, 0, -2);
             yield return new WaitForSeconds(pointerSpeed);
         }
 
         StartCoroutine("moveLeft");
+    }
+
+    IEnumerator frisbeeCoolDown()
+    {
+        for (float i = 0; i < coolDownBarSize; i++)
+        {
+            coolDownBar.fillAmount = i / coolDownBarSize;
+            yield return new WaitForSeconds(coolDownTime/coolDownBarSize);
+        }
+        coolDownBar.fillAmount = 1;
+        canShoot = true;
     }
 
     Vector2 SpeedCalculator()
