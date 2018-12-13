@@ -18,13 +18,19 @@ public class Frisbee : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter(Collider collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision);
         if (collision.tag == "Wall")
         {
             Debug.Log("lol");
             frisbeeRigidbody.velocity = new Vector2(-(frisbeeRigidbody.velocity.x), frisbeeRigidbody.velocity.y);
+        }
+
+        if (collision.tag == "Roof")
+        {
+            Destroy(gameObject);
         }
     }
 }

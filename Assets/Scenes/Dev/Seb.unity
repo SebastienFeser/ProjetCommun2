@@ -315,6 +315,10 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1251615601210000, guid: 99ce6e60cbfa68e46a2d0448c5c804d9, type: 2}
+      propertyPath: m_TagString
+      value: Roof
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99ce6e60cbfa68e46a2d0448c5c804d9, type: 2}
   m_IsPrefabAsset: 0
@@ -532,8 +536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb113a3fe6c44bc48b8fbac9e9e15020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumAngle: -45
-  maximumAngle: 45
+  minimumAngle: -60
+  maximumAngle: 60
   frisbeeSpeed: 20
   frisbeeGameObject: {fileID: 1727157098129742, guid: 3855982368979544baa8bda1f34d5ea5,
     type: 2}
