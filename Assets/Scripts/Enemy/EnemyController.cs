@@ -76,8 +76,11 @@ public class EnemyController : MonoBehaviour {
             case deathType.electric:
                 foreach (GameObject enemy in enemyElectric)
                 {
-                    Instantiate(particlesDeath, enemy.transform.position, Quaternion.identity);
-                    Destroy(enemy);
+                    if (enemy != null)
+                    {
+                        Instantiate(particlesDeath, enemy.transform.position, Quaternion.identity);
+                        Destroy(enemy);
+                    }
                 }
                 Instantiate(particlesDeath, transform.position, Quaternion.identity);
                 Destroy(gameObject);

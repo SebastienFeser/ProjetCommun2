@@ -6,6 +6,12 @@ public class Frisbee : MonoBehaviour {
 
     
     [SerializeField] private EnemyController.deathType typeFrisbee;
+    public EnemyController.deathType TypeFrisbee
+    {
+        set { typeFrisbee = value; }
+    }
+
+    [SerializeField] private Sprite normal, ice, gaz, electric, fire;
 
     private Vector2 frisbeeSpeed;
     public Vector2 FrisbeeSpeed
@@ -16,6 +22,30 @@ public class Frisbee : MonoBehaviour {
 
 	void Start () {
         frisbeeRigidbody.velocity = frisbeeSpeed;
+        SpriteRenderer spr = GetComponentInChildren<SpriteRenderer>();
+        switch (typeFrisbee)
+        {
+            case EnemyController.deathType.normal:
+                spr.sprite = normal;
+                break;
+
+            case EnemyController.deathType.ice:
+                spr.sprite = ice;
+                break;
+
+            case EnemyController.deathType.gaz:
+               spr.sprite = gaz;
+                break;
+
+            case EnemyController.deathType.electric:
+                spr.sprite = electric;
+                break;
+
+            case EnemyController.deathType.fire:
+                spr.sprite = fire;
+                break;
+        }
+
 	}
 	
 	void Update () {
