@@ -11,6 +11,12 @@ public class LaserMovements : MonoBehaviour {
     [SerializeField] GameObject frisbeeGameObject;
     [SerializeField] float pointerSpeed;
 
+    private EnemyController.deathType type;
+    public EnemyController.deathType Type
+    {
+        set { type = value; }
+    }
+
     bool goLeft = true;
     bool calledOnceInFunction = true;
 
@@ -38,16 +44,19 @@ public class LaserMovements : MonoBehaviour {
     #endregion
 
     void Start () {
+        type = EnemyController.deathType.normal;
         StartCoroutine("moveLeft");
         transform.eulerAngles = new Vector3(0, 0, minimumAngle);
 	}
 	
 	void Update () {
-        if (Input.GetButtonDown("Fire1") && canShoot)
+        if (Input.GetKeyDown(KeyCode.W) && canShoot)
         {
             frisbeeVectorSpeed = SpeedCalculator();
             GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
+            frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
             frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+            
             StartCoroutine("frisbeeCoolDown");
             canShoot = false;
         }
@@ -58,7 +67,7 @@ public class LaserMovements : MonoBehaviour {
         for(float i = minimumAngle; i < maximumAngle; i+=2)
         {
             transform.Rotate(0, 0, 2);
-            yield return new WaitForSeconds(pointerSpeed);
+            yield return new WaitForSeconds(pointerSpeed/100);
         }
 
         StartCoroutine("moveRight");
@@ -70,7 +79,7 @@ public class LaserMovements : MonoBehaviour {
         for (float i = maximumAngle; i > minimumAngle; i-=2)
         {
             transform.Rotate(0, 0, -2);
-            yield return new WaitForSeconds(pointerSpeed);
+            yield return new WaitForSeconds(pointerSpeed/100);
         }
 
         StartCoroutine("moveLeft");

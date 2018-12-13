@@ -113,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519027439320262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.37, z: 0}
+  m_LocalPosition: {x: 0, y: -7.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4923596562958232}
@@ -207,12 +207,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb113a3fe6c44bc48b8fbac9e9e15020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumAngle: -60
-  maximumAngle: 60
+  minimumAngle: -80
+  maximumAngle: 80
   frisbeeSpeed: 20
   frisbeeGameObject: {fileID: 1727157098129742, guid: 3855982368979544baa8bda1f34d5ea5,
     type: 2}
-  pointerSpeed: 0
+  pointerSpeed: 1
   coolDownBar: {fileID: 0}
   coolDownTime: 1
 --- !u!114 &114820949835110396
