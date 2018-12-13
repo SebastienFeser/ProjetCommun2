@@ -7,6 +7,14 @@ TagManager:
   - CircleCenter
   - Wall
   - Roof
+  - Enemy_Projectile
+  - Firsbee_Ice
+  - Frisbee_Fire
+  - Firsbee_Gaz
+  - Frisbee_Electric
+  - Frisbee_Normal
+  - Shield
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,8 +24,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Enemy
+  - Bullet
   - 
   - 
   - 

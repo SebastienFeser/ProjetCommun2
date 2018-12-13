@@ -6,7 +6,7 @@ public class EnemySequence : MonoBehaviour {
     [SerializeField] private float moveLength;
     [SerializeField] private float speed, time;
     [SerializeField] private RowSpawner rowSpawnerScript;
-    [SerializeField] private const int maxMove = 5;
+    [SerializeField] private int maxMove = 5;
 
     private enum moveDir { up, down, left, right};
     private moveDir dir;
@@ -48,9 +48,8 @@ public class EnemySequence : MonoBehaviour {
 
     IEnumerator Sequence()
     {
-        int moveLength = maxMove - (rowSpawnerScript.BeeRowNumber - 1) / 2;
         //Move Right
-        for (int i = 0; i < moveLength; i++)
+        for (int i = 0; i < maxMove; i++)
         {
             Move(moveDir.right);
             yield return new WaitForSeconds(time);
@@ -58,15 +57,13 @@ public class EnemySequence : MonoBehaviour {
 
         while (hasToMove)
         {
-            int moveLength_2 = maxMove - (rowSpawnerScript.BeeRowNumber - 1) / 2;
-
             //Move Down
             Move(moveDir.down);
             yield return new WaitForSeconds(time);
 
 
             //Move Left
-            for (int i = 0; i < moveLength_2 * 2; i++)
+            for (int i = 0; i < maxMove * 2; i++)
             {
                 Move(moveDir.left);
                 yield return new WaitForSeconds(time);
@@ -77,7 +74,7 @@ public class EnemySequence : MonoBehaviour {
             yield return new WaitForSeconds(time);
 
             //Move Right
-            for (int i = 0; i < moveLength_2 * 2; i++)
+            for (int i = 0; i < maxMove * 2; i++)
             {
                 Move(moveDir.right);
                 yield return new WaitForSeconds(time);

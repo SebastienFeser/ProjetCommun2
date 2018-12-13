@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Frisbee : MonoBehaviour {
+
+    
+    [SerializeField] private EnemyController.deathType typeFrisbee;
+
     private Vector2 frisbeeSpeed;
     public Vector2 FrisbeeSpeed
     {
@@ -24,12 +28,15 @@ public class Frisbee : MonoBehaviour {
         Debug.Log(collision);
         if (collision.tag == "Wall")
         {
-            Debug.Log("lol");
             frisbeeRigidbody.velocity = new Vector2(-(frisbeeRigidbody.velocity.x), frisbeeRigidbody.velocity.y);
         }
-
-        if (collision.tag == "Roof")
+        else if (collision.tag == "Roof")
         {
+            Destroy(gameObject);
+        }
+        else if(collision.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyController>().DestroyBee(typeFrisbee);
             Destroy(gameObject);
         }
     }
