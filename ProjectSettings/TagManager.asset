@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CircleCenter
   - Wall
+  - Roof
   layers:
   - Default
   - TransparentFX
