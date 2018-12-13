@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour {
         set { life = value; }
     }
 
-    [SerializeField] private List<GameObject> nearEnemy;
+    [SerializeField] private List<GameObject> enemyGaz, enemyElectric;
 
     private enum beeType { normal, shoot, fat };
     public enum deathType { fire, ice, normal, gaz, electric };
@@ -28,9 +28,10 @@ public class EnemyController : MonoBehaviour {
     private bool canShoot;
 
     void Start () {
+
         if (deleteme)
         {
-            Invoke("remove", 3);
+            //Invoke("remove", 3);
         }
         switch (type)
         {
@@ -68,7 +69,12 @@ public class EnemyController : MonoBehaviour {
         switch (type)
         {
             case deathType.normal:
-                foreach(GameObject enemy in nearEnemy)
+                Instantiate(particlesDeath, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                break;
+
+            case deathType.electric:
+                foreach (GameObject enemy in enemyElectric)
                 {
                     Instantiate(particlesDeath, enemy.transform.position, Quaternion.identity);
                     Destroy(enemy);
@@ -77,16 +83,30 @@ public class EnemyController : MonoBehaviour {
                 Destroy(gameObject);
                 break;
 
-            case deathType.electric:
-
-                break;
-
             case deathType.fire:
 
                 break;
 
             case deathType.gaz:
+                foreach (GameObject enemy in enemyGaz)
+                {
+                    if (enemy != null)
+                    {
+                        Instantiate(particlesDeath, enemy.transform.position, Quaternion.identity);
+                        Destroy(enemy);
+                    }
+                }
 
+                foreach (GameObject enemy in enemyElectric)
+                {
+                    if (enemy != null)
+                    {
+                        Instantiate(particlesDeath, enemy.transform.position, Quaternion.identity);
+                        Destroy(enemy);
+                    }
+                }
+                Instantiate(particlesDeath, transform.position, Quaternion.identity);
+                Destroy(gameObject);
                 break;
 
             case deathType.ice:
@@ -95,9 +115,18 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
-    public void AddNearEnemy(GameObject enemy)
+    public void AddNearEnemy(GameObject enemy, string type)
     {
-        nearEnemy.Add(enemy);
+        switch (type)
+        {
+            case "Electric":
+                enemyElectric.Add(enemy);
+                break;
+
+            case "Gaz":
+                enemyGaz.Add(enemy);
+                break;
+        }
     }
 
     IEnumerator ShootTimer()
@@ -110,6 +139,6 @@ public class EnemyController : MonoBehaviour {
 
     void remove()
     {
-        DestroyBee(deathType.normal);
+        DestroyBee(deathType.electric);
     }
 }
