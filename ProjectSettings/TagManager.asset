@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CircleCenter
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -40,4 +42,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2343630833
+    locked: 0
+  - name: Level
+    uniqueID: 1792984491
+    locked: 0
+  - name: Entity
+    uniqueID: 3622069855
+    locked: 0
+  - name: UI
+    uniqueID: 4285740759
     locked: 0
