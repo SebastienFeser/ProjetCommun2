@@ -34,51 +34,97 @@ public class RowSpawner : MonoBehaviour {
             {
                 GameObject bee = Instantiate(beeNormal, posTransf[i].position, Quaternion.identity);
                 bee.transform.SetParent(posTransf[i]);
-                EnemyController controller = bee.GetComponent<EnemyController>();
-
-                //Get Near Enemies
-                if (i > 0)
-                {
-                    controller.AddNearEnemy(posTransf[i - 1].gameObject);
-                }
-                if (i < 4)
-                {
-                    controller.AddNearEnemy(posTransf[i + 1].gameObject);
-                }
-
-                if(rowID == 0)
-                {
-                    controller.AddNearEnemy(rows[rowID + 1].GetComponent<RowSpawner>().posTransf[i].gameObject);
-                    controller.AddNearEnemy(rows[rowID + 2].GetComponent<RowSpawner>().posTransf[i].gameObject);
-
-                }
-                else if(rowID == 1)
-                {
-                    controller.AddNearEnemy(rows[rowID - 1].GetComponent<RowSpawner>().posTransf[i].gameObject);
-                    controller.AddNearEnemy(rows[rowID + 1].GetComponent<RowSpawner>().posTransf[i].gameObject);
-                }
-                else if (rowID == 2)
-                {
-                    controller.AddNearEnemy(rows[rowID - 1].GetComponent<RowSpawner>().posTransf[i].gameObject);
-                    controller.AddNearEnemy(rows[rowID - 2].GetComponent<RowSpawner>().posTransf[i].gameObject);
-                }
-
-
-
+                GetNearBee(bee, i);
             }
             else if(posTypes[i] == beeType.shoot)
             {
                 GameObject bee = Instantiate(beeShoot, posTransf[i].position, Quaternion.identity);
                 bee.transform.SetParent(posTransf[i]);
+                GetNearBee(bee, i);
             }
             else if (posTypes[i] == beeType.fat)
             {
                 GameObject bee = Instantiate(beeFat, posTransf[i].position, Quaternion.identity);
                 bee.transform.SetParent(posTransf[i]);
+                GetNearBee(bee, i);
             }
         }
         
 	}
+
+    void GetNearBee(GameObject bee, int i)
+    {
+        EnemyController controller = bee.GetComponent<EnemyController>();
+
+        if (rowID == 0)
+        {
+            if (i > 0 && i < 4)
+            {
+                controller.AddNearEnemy(posTransf[i + 1].gameObject, "Gaz");
+                controller.AddNearEnemy(posTransf[i - 1].gameObject, "Gaz");
+                controller.AddNearEnemy(rows[rowID + 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+                controller.AddNearEnemy(rows[rowID + 2].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+            }
+            else if (i == 0)
+            {
+                controller.AddNearEnemy(posTransf[i + 1].gameObject, "Gaz");
+                controller.AddNearEnemy(rows[rowID + 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+                controller.AddNearEnemy(rows[rowID + 2].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+            }
+            else if (i == 4)
+            {
+                controller.AddNearEnemy(posTransf[i - 1].gameObject, "Gaz");
+                controller.AddNearEnemy(rows[rowID + 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+                controller.AddNearEnemy(rows[rowID + 2].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+            }
+        }
+        if (rowID == 1)
+        {
+            if (i > 0 && i < 4)
+            {
+                controller.AddNearEnemy(posTransf[i + 1].gameObject, "Gaz");
+                controller.AddNearEnemy(posTransf[i - 1].gameObject, "Gaz");
+                controller.AddNearEnemy(rows[rowID + 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+                controller.AddNearEnemy(rows[rowID - 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+            }
+            else if (i == 0)
+            {
+                controller.AddNearEnemy(posTransf[i + 1].gameObject, "Gaz");
+                controller.AddNearEnemy(rows[rowID + 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+                controller.AddNearEnemy(rows[rowID - 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+            }
+            else if (i == 4)
+            {
+                controller.AddNearEnemy(posTransf[i - 1].gameObject, "Gaz");
+                controller.AddNearEnemy(rows[rowID + 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+                controller.AddNearEnemy(rows[rowID - 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+            }
+        }
+        if (rowID == 2)
+        {
+            if (i > 0 && i < 4)
+            {
+                controller.AddNearEnemy(posTransf[i + 1].gameObject, "Gaz");
+                controller.AddNearEnemy(posTransf[i - 1].gameObject, "Gaz");
+                controller.AddNearEnemy(rows[rowID - 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+                controller.AddNearEnemy(rows[rowID - 2].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+            }
+            else if (i == 0)
+            {
+                controller.AddNearEnemy(posTransf[i + 1].gameObject, "Gaz");
+                controller.AddNearEnemy(rows[rowID - 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+                controller.AddNearEnemy(rows[rowID - 2].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+
+            }
+            else if (i == 4)
+            {
+                controller.AddNearEnemy(posTransf[i - 1].gameObject, "Gaz");
+                controller.AddNearEnemy(rows[rowID - 1].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+                controller.AddNearEnemy(rows[rowID - 2].GetComponent<RowSpawner>().posTransf[i].gameObject, "Electric");
+
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

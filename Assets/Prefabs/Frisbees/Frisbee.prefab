@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ac7190419ede545807c1010581f9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeFrisbee: 3
   frisbeeRigidbody: {fileID: 50896173945852940}
 --- !u!212 &212908491344424904
 SpriteRenderer:
