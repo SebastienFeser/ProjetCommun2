@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Frisbee : MonoBehaviour {
+    [SerializeField] private float offset;
+    [SerializeField] private Transform trail;
     [SerializeField] private Material iceMaterial, fireMaterial, gazMaterial, electricMaterial;
     [SerializeField] private ParticlesFrisbee particleScript;
+    [SerializeField] Rigidbody2D frisbeeRigidbody;
+    [SerializeField] private Sprite normal, ice, gaz, electric, fire;
+
     [SerializeField] private EnemyController.deathType typeFrisbee;
     public EnemyController.deathType TypeFrisbee
     {
         set { typeFrisbee = value; }
     }
 
-    [SerializeField] private Sprite normal, ice, gaz, electric, fire;
-
     private Vector2 frisbeeSpeed;
     public Vector2 FrisbeeSpeed
     {
         set { frisbeeSpeed = value; }
     }
-    [SerializeField] Rigidbody2D frisbeeRigidbody;
+
+    private Animator animatorComponent;
 
 	void Start () {
-
+        animatorComponent = trail.GetComponentInChildren<Animator>();
         frisbeeRigidbody.velocity = frisbeeSpeed;
         SpriteRenderer spr = GetComponentInChildren<SpriteRenderer>();
         ParticleSystemRenderer partRenderer = particleScript.gameObject.GetComponent<ParticleSystemRenderer>();
@@ -30,30 +34,45 @@ public class Frisbee : MonoBehaviour {
             case EnemyController.deathType.normal:
                 spr.sprite = normal;
                 partRenderer.enabled = false;
+                animatorComponent.SetBool("normal", true);
                 break;
 
             case EnemyController.deathType.ice:
                 spr.sprite = ice;
                 partRenderer.material = iceMaterial;
+                animatorComponent.SetBool("ice", true);
                 break;
 
             case EnemyController.deathType.gaz:
                spr.sprite = gaz;
                 partRenderer.material = gazMaterial;
+                animatorComponent.SetBool("gaz", true);
                 break;
 
             case EnemyController.deathType.electric:
                 spr.sprite = electric;
                 partRenderer.material = electricMaterial;
+                animatorComponent.SetBool("electric", true);
                 break;
 
             case EnemyController.deathType.fire:
                 spr.sprite = fire;
                 partRenderer.material = fireMaterial;
+                animatorComponent.SetBool("fire", true);
                 break;
         }
 
 	}
+
+    private void FixedUpdate()
+    {
+
+        Vector3 vectorToTarget = frisbeeRigidbody.velocity;
+        Debug.DrawLine(transform.position, transform.position+vectorToTarget);
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.AngleAxis(angle+offset, Vector3.forward);
+        trail.rotation = Quaternion.Slerp(trail.rotation, q, Time.deltaTime * 100);
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,4 +101,5 @@ public class Frisbee : MonoBehaviour {
             }
         }
     }
+
 }
