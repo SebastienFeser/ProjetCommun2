@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
+    [SerializeField] private GameObject ice;
     [SerializeField] private GameObject particlesDeath;
     [SerializeField] private GameObject shootPrefab;
     [SerializeField] private float shootIntervalMin, shootIntervalMax;
@@ -25,7 +26,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     private bool canShoot;
-
+    private bool frozen;
     private EnemySequence enemySequenceScript;
 
 
@@ -61,7 +62,10 @@ public class EnemyController : MonoBehaviour {
 
     void Shoot()
     {
-        Instantiate(shootPrefab, transform.position, transform.rotation);   
+        if (!frozen)
+        {
+            Instantiate(shootPrefab, transform.position, transform.rotation);
+        }
     }
 
     public void DestroyBee(deathType type, GameObject toDestroy = default(GameObject))
@@ -144,5 +148,11 @@ public class EnemyController : MonoBehaviour {
     void remove()
     {
         DestroyBee(deathType.electric);
+    }
+
+    public void ToggleIce(bool state)
+    {
+        ice.SetActive(state);
+        frozen = state;
     }
 }

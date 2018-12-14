@@ -8,6 +8,7 @@ public class EnemySequence : MonoBehaviour {
     [SerializeField] private RowSpawner rowSpawnerScript;
     [SerializeField] private int maxMove = 5;
     [SerializeField] private int freezeTime;
+    [SerializeField] private List<GameObject> everyEnemy;
 
     private enum moveDir { up, down, left, right};
     private moveDir dir;
@@ -18,12 +19,35 @@ public class EnemySequence : MonoBehaviour {
 
 	void Start () { 
         StartCoroutine("Sequence");
+        FindAllEnemy();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        FindAllEnemy();
         transform.position = Vector3.Lerp(transform.position, destination, speed/10);
 	}
+
+    public void FindAllEnemy()
+    {
+        everyEnemy.Clear();
+       GameObject[] enemyArray = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach(GameObject enemy in enemyArray)
+        {
+            everyEnemy.Add(enemy);
+        }
+
+    }
+
+    public void ToggleIce(bool state)
+    {
+        foreach(GameObject enemy in everyEnemy)
+        {
+            enemy.GetComponent<EnemyController>().ToggleIce(state);
+        }
+    }
+
 
     void Move(moveDir direction)
     {
@@ -63,40 +87,44 @@ public class EnemySequence : MonoBehaviour {
         while (hasToMove)
         {
             //Move Down
-            Move(moveDir.down);
+            
             while (frozen)
             {
                 yield return new WaitForSeconds(0.05f);
             }
+            Move(moveDir.down);
             yield return new WaitForSeconds(time);
 
             //Move Left
             for (int i = 0; i < maxMove * 2; i++)
             {
-                Move(moveDir.left);
+                
                 while (frozen)
                 {
                     yield return new WaitForSeconds(0.05f);
                 }
+                Move(moveDir.left);
                 yield return new WaitForSeconds(time);
             }
 
             //Move Down
-            Move(moveDir.down);
+            
             while (frozen)
             {
                 yield return new WaitForSeconds(0.05f);
             }
+            Move(moveDir.down);
             yield return new WaitForSeconds(time);
 
             //Move Right
             for (int i = 0; i < maxMove * 2; i++)
             {
-                Move(moveDir.right);
+                
                 while (frozen)
                 {
                     yield return new WaitForSeconds(0.05f);
                 }
+                Move(moveDir.right);
                 yield return new WaitForSeconds(time);
             }
 
@@ -107,8 +135,10 @@ public class EnemySequence : MonoBehaviour {
    public IEnumerator Freeze()
     {
         frozen = true;
+        ToggleIce(true);
         yield return new WaitForSeconds(freezeTime);
         frozen = false;
+        ToggleIce(false);
         
     }
 }
