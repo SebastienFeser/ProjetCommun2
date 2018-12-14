@@ -37,10 +37,25 @@ public class LaserMovements : MonoBehaviour {
     #endregion
 
     #region Used for Cooldown
-    [SerializeField] Image coolDownBar;
-    [SerializeField] float coolDownTime;
     float coolDownBarSize = 100f;
-    bool canShoot = true;
+
+    [SerializeField] Image normalCoolDownBar;
+    [SerializeField] Image electricCoolDownBar;
+    [SerializeField] Image gazCoolDownBar;
+    [SerializeField] Image fireCoolDownBar;
+    [SerializeField] Image iceCoolDownBar;
+
+    [SerializeField] float normalCoolDownTime;
+    [SerializeField] float electricCoolDownTime;
+    [SerializeField] float gazCoolDownTime;
+    [SerializeField] float fireCoolDownTime;
+    [SerializeField] float iceCoolDownTime;
+
+    bool canShootNormal = true;
+    bool canShootElectric = true;
+    bool canShootGaz = true;
+    bool canShootFire = true;
+    bool canShootIce = true;
     #endregion
 
     void Start () {
@@ -50,15 +65,74 @@ public class LaserMovements : MonoBehaviour {
 	}
 	
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.W) && canShoot)
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            frisbeeVectorSpeed = SpeedCalculator();
-            GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
-            frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
-            frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+
+            switch (type)
+            {
+                case EnemyController.deathType.normal:
+                    if (canShootNormal)
+                    {
+                        frisbeeVectorSpeed = SpeedCalculator();
+                        GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
+                        frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
+                        frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+
+                        StartCoroutine("normalFrisbeeCoolDown");
+                        canShootNormal = false;
+                    }
+                    break;
+                case EnemyController.deathType.electric:
+                    if (canShootElectric)
+                    {
+                        frisbeeVectorSpeed = SpeedCalculator();
+                        GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
+                        frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
+                        frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+                        Debug.Log("test");
+
+                        StartCoroutine("electricFrisbeeCoolDown");
+                        canShootElectric = false;
+                    }
+                    break;
+                case EnemyController.deathType.gaz:
+                    if (canShootGaz)
+                    {
+                        frisbeeVectorSpeed = SpeedCalculator();
+                        GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
+                        frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
+                        frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+
+                        StartCoroutine("gazFrisbeeCoolDown");
+                        canShootGaz = false;
+                    }
+                    break;
+                case EnemyController.deathType.ice:
+                    if (canShootIce)
+                    {
+                        frisbeeVectorSpeed = SpeedCalculator();
+                        GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
+                        frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
+                        frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+
+                        StartCoroutine("iceFrisbeeCoolDown");
+                        canShootIce = false;
+                    }
+                    break;
+                case EnemyController.deathType.fire:
+                    if (canShootFire)
+                    {
+                        frisbeeVectorSpeed = SpeedCalculator();
+                        GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
+                        frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
+                        frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+
+                        StartCoroutine("fireFrisbeeCoolDown");
+                        canShootFire = false;
+                    }
+                    break;
+            }
             
-            StartCoroutine("frisbeeCoolDown");
-            canShoot = false;
         }
 	}
 
@@ -85,15 +159,59 @@ public class LaserMovements : MonoBehaviour {
         StartCoroutine("moveLeft");
     }
 
-    IEnumerator frisbeeCoolDown()
+    IEnumerator normalFrisbeeCoolDown()
     {
         for (float i = 0; i < coolDownBarSize; i++)
         {
-            coolDownBar.fillAmount = i / coolDownBarSize;
-            yield return new WaitForSeconds(coolDownTime/coolDownBarSize);
+            normalCoolDownBar.fillAmount = i / coolDownBarSize;
+            yield return new WaitForSeconds(normalCoolDownTime/coolDownBarSize);
         }
-        coolDownBar.fillAmount = 1;
-        canShoot = true;
+        normalCoolDownBar.fillAmount = 1;
+        canShootNormal = true;
+    }
+
+    IEnumerable electricFrisbeeCoolDown()
+    {
+        for (float i = 0; i < coolDownBarSize; i++)
+        {
+            electricCoolDownBar.fillAmount = i / coolDownBarSize;
+            yield return new WaitForSeconds(electricCoolDownTime / coolDownBarSize);
+        }
+        electricCoolDownBar.fillAmount = 1;
+        canShootElectric = true;
+    }
+
+    IEnumerable gazFrisbeeCoolDown()
+    {
+        for (float i = 0; i < coolDownBarSize; i++)
+        {
+            gazCoolDownBar.fillAmount = i / coolDownBarSize;
+            yield return new WaitForSeconds(gazCoolDownTime / coolDownBarSize);
+        }
+        gazCoolDownBar.fillAmount = 1;
+        canShootGaz = true;
+    }
+
+    IEnumerable fireFrisbeeCoolDown()
+    {
+        for (float i = 0; i < coolDownBarSize; i++)
+        {
+            fireCoolDownBar.fillAmount = i / coolDownBarSize;
+            yield return new WaitForSeconds(fireCoolDownTime / coolDownBarSize);
+        }
+        fireCoolDownBar.fillAmount = 1;
+        canShootFire = true;
+    }
+
+    IEnumerable iceFrisbeeCoolDown()
+    {
+        for (float i = 0; i < coolDownBarSize; i++)
+        {
+            iceCoolDownBar.fillAmount = i / coolDownBarSize;
+            yield return new WaitForSeconds(iceCoolDownTime / coolDownBarSize);
+        }
+        iceCoolDownBar.fillAmount = 1;
+        canShootIce = true;
     }
 
     Vector2 SpeedCalculator()
