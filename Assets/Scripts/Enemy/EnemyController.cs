@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
-    public bool deleteme;
     [SerializeField] private GameObject particlesDeath;
     [SerializeField] private GameObject shootPrefab;
     [SerializeField] private float shootIntervalMin, shootIntervalMax;
@@ -27,12 +26,13 @@ public class EnemyController : MonoBehaviour {
 
     private bool canShoot;
 
+    private EnemySequence enemySequenceScript;
+
+
     void Start () {
 
-        if (deleteme)
-        {
-            //Invoke("remove", 3);
-        }
+        enemySequenceScript = GameObject.FindGameObjectWithTag("EnemySequence").GetComponent<EnemySequence>();
+
         switch (type)
         {
             case beeType.normal:
@@ -64,7 +64,7 @@ public class EnemyController : MonoBehaviour {
         Instantiate(shootPrefab, transform.position, transform.rotation);   
     }
 
-    public void DestroyBee(deathType type)
+    public void DestroyBee(deathType type, GameObject toDestroy = default(GameObject))
     {
         switch (type)
         {
@@ -87,7 +87,8 @@ public class EnemyController : MonoBehaviour {
                 break;
 
             case deathType.fire:
-
+                Instantiate(particlesDeath, toDestroy.transform.position, Quaternion.identity);
+                Destroy(toDestroy);
                 break;
 
             case deathType.gaz:
@@ -113,7 +114,7 @@ public class EnemyController : MonoBehaviour {
                 break;
 
             case deathType.ice:
-
+                enemySequenceScript.StartCoroutine("Freeze");
                 break;
         }
     }
