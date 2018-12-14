@@ -9,6 +9,20 @@ NOTE
 */
 public class Inventory : MonoBehaviour {
     float life;
+    float lifeAugmentation = 50;
+
+    float freezeTime;
+    float shieldEffectTime;
+
+    bool shieldMirroring = false;   //Send back projectiles
+
+    #region Has Frisbe
+    bool hasIce = false;
+    bool hasFire = false;
+    bool hasElec = false;
+    bool hasGaz = false;
+    bool hasShield = false;
+    #endregion
 
     #region Frisbe cooldown
     float coolDownNormal;
@@ -68,19 +82,19 @@ public class Inventory : MonoBehaviour {
     #endregion
 
     #region Bolleans for Shop items
-    bool item1;                     //Frisbe elec
-    bool item2;                     //Frisbe gaz
+    bool item1;                     //Frisbe elec                               DONE
+    bool item2;                     //Frisbe gaz                                DONE
     bool item3;                     //Cooldown fris normal reduction            DONE
-    bool item4;                     //Shield activated time++
-    bool item5;                     //Frisbe fire
-    bool item6;                     //Frisbe ice
-    bool item7;                     //Shield send back projectiles
-    bool item8;                     //Ice slow time++
+    bool item4;                     //Shield activated time++                   DONE
+    bool item5;                     //Frisbe fire                               DONE
+    bool item6;                     //Frisbe ice                                DONE
+    bool item7;                     //Shield send back projectiles              DONE
+    bool item8;                     //Ice slow time++                           DONE
     bool item9;                     //Gaz range++
-    bool item10;                    //Cooldown all fris --
+    bool item10;                    //Cooldown all fris --                      DONE
     bool item11;                    //More life
     bool item12;                    //Electric fris explode armored bees
-    bool itemBONUS;                 //Frisbe shield
+    bool itemBONUS;                 //Frisbe shield                             DONE
     #endregion
 
     void Start () {
@@ -91,11 +105,13 @@ public class Inventory : MonoBehaviour {
 	void Update () {
 		if (item1)
         {
+            hasElec = true;
             item1 = false;
         }
 
         if (item2)
         {
+            hasGaz = true;
             item2 = false;
         }
 
@@ -107,26 +123,31 @@ public class Inventory : MonoBehaviour {
 
         if (item4)
         {
+            shieldEffectTime *= 2;
             item4 = false;
         }
 
         if (item5)
         {
+            hasFire = true;
             item5 = false;
         }
 
         if (item6)
         {
+            hasIce = true;
             item6 = false;
         }
 
         if (item7)
         {
+            shieldMirroring = true;
             item7 = false;
         }
 
         if (item8)
         {
+            freezeTime *= 2;
             item8 = false;
         }
 
@@ -148,6 +169,7 @@ public class Inventory : MonoBehaviour {
 
         if (item11)
         {
+            life += lifeAugmentation;
             item11 = false;
         }
 
@@ -158,6 +180,7 @@ public class Inventory : MonoBehaviour {
 
         if (itemBONUS)
         {
+            hasShield = true;
             itemBONUS = false;
         }
     }
