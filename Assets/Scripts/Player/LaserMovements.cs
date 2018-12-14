@@ -170,7 +170,7 @@ public class LaserMovements : MonoBehaviour {
         canShootNormal = true;
     }
 
-    IEnumerable electricFrisbeeCoolDown()
+    IEnumerator electricFrisbeeCoolDown()
     {
         for (float i = 0; i < coolDownBarSize; i++)
         {
@@ -181,7 +181,7 @@ public class LaserMovements : MonoBehaviour {
         canShootElectric = true;
     }
 
-    IEnumerable gazFrisbeeCoolDown()
+    IEnumerator gazFrisbeeCoolDown()
     {
         for (float i = 0; i < coolDownBarSize; i++)
         {
@@ -192,7 +192,7 @@ public class LaserMovements : MonoBehaviour {
         canShootGaz = true;
     }
 
-    IEnumerable fireFrisbeeCoolDown()
+    IEnumerator fireFrisbeeCoolDown()
     {
         for (float i = 0; i < coolDownBarSize; i++)
         {
@@ -203,7 +203,7 @@ public class LaserMovements : MonoBehaviour {
         canShootFire = true;
     }
 
-    IEnumerable iceFrisbeeCoolDown()
+    IEnumerator iceFrisbeeCoolDown()
     {
         for (float i = 0; i < coolDownBarSize; i++)
         {
