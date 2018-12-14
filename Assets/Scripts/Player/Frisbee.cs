@@ -66,8 +66,16 @@ public class Frisbee : MonoBehaviour {
         }
         else if(collision.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyController>().DestroyBee(typeFrisbee);
-            Destroy(gameObject);
+
+            if (typeFrisbee != EnemyController.deathType.fire)
+            {
+                collision.gameObject.GetComponent<EnemyController>().DestroyBee(typeFrisbee);
+                Destroy(gameObject);
+            }
+            else
+            {
+                collision.gameObject.GetComponent<EnemyController>().DestroyBee(typeFrisbee, collision.gameObject);
+            }
         }
     }
 }

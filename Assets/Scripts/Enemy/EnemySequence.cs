@@ -7,13 +7,14 @@ public class EnemySequence : MonoBehaviour {
     [SerializeField] private float speed, time;
     [SerializeField] private RowSpawner rowSpawnerScript;
     [SerializeField] private int maxMove = 5;
+    [SerializeField] private int freezeTime;
 
     private enum moveDir { up, down, left, right};
     private moveDir dir;
     private Vector3 destination;
 
     private bool hasToMove = true;
- 
+    private bool frozen = false;
 
 	void Start () { 
         StartCoroutine("Sequence");
@@ -52,6 +53,10 @@ public class EnemySequence : MonoBehaviour {
         for (int i = 0; i < maxMove; i++)
         {
             Move(moveDir.right);
+            while (frozen)
+            {
+                yield return new WaitForSeconds(0.05f);
+            }
             yield return new WaitForSeconds(time);
         }
 
@@ -59,26 +64,51 @@ public class EnemySequence : MonoBehaviour {
         {
             //Move Down
             Move(moveDir.down);
+            while (frozen)
+            {
+                yield return new WaitForSeconds(0.05f);
+            }
             yield return new WaitForSeconds(time);
-
 
             //Move Left
             for (int i = 0; i < maxMove * 2; i++)
             {
                 Move(moveDir.left);
+                while (frozen)
+                {
+                    yield return new WaitForSeconds(0.05f);
+                }
                 yield return new WaitForSeconds(time);
             }
 
             //Move Down
             Move(moveDir.down);
+            while (frozen)
+            {
+                yield return new WaitForSeconds(0.05f);
+            }
             yield return new WaitForSeconds(time);
 
             //Move Right
             for (int i = 0; i < maxMove * 2; i++)
             {
                 Move(moveDir.right);
+                while (frozen)
+                {
+                    yield return new WaitForSeconds(0.05f);
+                }
                 yield return new WaitForSeconds(time);
             }
+
+
         }
+    }
+
+   public IEnumerator Freeze()
+    {
+        frozen = true;
+        yield return new WaitForSeconds(freezeTime);
+        frozen = false;
+        
     }
 }

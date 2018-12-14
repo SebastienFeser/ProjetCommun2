@@ -15,6 +15,7 @@ TagManager:
   - Frisbee_Normal
   - Shield
   - Enemy
+  - EnemySequence
   layers:
   - Default
   - TransparentFX
