@@ -1,14 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovements : MonoBehaviour {
     [SerializeField] Rigidbody2D playerRigidBody2D;
     [SerializeField] float playerMovementSpeed = 5f;
+    [SerializeField] float life = 100;
+    [SerializeField] Image lifeBar;
+    float lifeBarSize;
+    [SerializeField] float projectilesDamages = 20;
+
     bool isMovingRight;
     bool isMovingLeft;
     
 	void Start () {
+        lifeBarSize = life;
 		
 	}
 	
@@ -50,6 +57,11 @@ public class PlayerMovements : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.tag == "Enemy_Projectile")
+        {
+            life -= projectilesDamages;
+            lifeBar.fillAmount = life / lifeBarSize;
+            Destroy(collision.gameObject);
+        }
     }
 }
