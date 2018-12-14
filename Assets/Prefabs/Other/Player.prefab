@@ -83,8 +83,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4537786283783576}
   - component: {fileID: 50610205817499622}
-  - component: {fileID: 58479424328339586}
   - component: {fileID: 114820949835110396}
+  - component: {fileID: 60467353483777728}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -113,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519027439320262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.53, z: 0}
+  m_LocalPosition: {x: 0, y: -7.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4923596562958232}
@@ -154,7 +154,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1271107378694518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4749051121918342}
@@ -181,8 +181,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58479424328339586
-CircleCollider2D:
+--- !u!60 &60467353483777728
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -194,8 +194,22 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 1}
+      - {x: -0.95105654, y: 0.30901697}
+      - {x: -0.5877852, y: -0.80901706}
+      - {x: 0.58778536, y: -0.80901694}
+      - {x: 0.9510565, y: 0.30901712}
 --- !u!114 &114479686277790280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,8 +227,16 @@ MonoBehaviour:
   frisbeeGameObject: {fileID: 1727157098129742, guid: 3855982368979544baa8bda1f34d5ea5,
     type: 2}
   pointerSpeed: 1
-  coolDownBar: {fileID: 0}
-  coolDownTime: 1
+  normalCoolDownBar: {fileID: 0}
+  electricCoolDownBar: {fileID: 0}
+  gazCoolDownBar: {fileID: 0}
+  fireCoolDownBar: {fileID: 0}
+  iceCoolDownBar: {fileID: 0}
+  normalCoolDownTime: 1
+  electricCoolDownTime: 1
+  gazCoolDownTime: 1
+  fireCoolDownTime: 15
+  iceCoolDownTime: 30
 --- !u!114 &114820949835110396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -228,6 +250,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRigidBody2D: {fileID: 50610205817499622}
   playerMovementSpeed: 5
+  life: 100
+  lifeBar: {fileID: 0}
+  projectilesDamages: 20
 --- !u!212 &212109809865140346
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -260,8 +285,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -9226537
-  m_SortingLayer: 4
+  m_SortingLayerID: -672897441
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 96c361506fa72ba4f9c8f2476d59e2cc, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -306,11 +331,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -672897441
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d200abe365444f641817958a5443f02f, type: 3}
-  m_Color: {r: 0.3347509, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2e33973b06c53b2499f9a5b32e0362ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
