@@ -1,12 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/*
-NOTE
 
-    J'ai pas mis les bool dans une liste pour qu'on puisse avoir un glossaire dans la région "Booleans for Shop items"
-
-*/
 public class Inventory : MonoBehaviour {
     [SerializeField] private JSON_Save jsonSave;
     /*float life;
@@ -105,90 +100,6 @@ public class Inventory : MonoBehaviour {
         jsonSave.ReadJson();
         UpdateInventory(jsonSave.valuesState);
     }
-
-    // Update is called once per frame
-    /*void Update () {
-		if (item1)
-        {
-            hasElec = true;
-            item1 = false;
-        }
-
-        if (item2)
-        {
-            hasGaz = true;
-            item2 = false;
-        }
-
-        if (item3)
-        {
-            coolDownNormal = coolDownNormal / 2;
-            item3 = false;
-        }
-
-        if (item4)
-        {
-            shieldEffectTime *= 2;
-            item4 = false;
-        }
-
-        if (item5)
-        {
-            hasFire = true;
-            item5 = false;
-        }
-
-        if (item6)
-        {
-            hasIce = true;
-            item6 = false;
-        }
-
-        if (item7)
-        {
-            shieldMirroring = true;
-            item7 = false;
-        }
-
-        if (item8)
-        {
-            freezeTime *= 2;
-            item8 = false;
-        }
-
-        if (item9)
-        {
-            item9 = false;
-        }
-
-        if (item10)
-        {
-            coolDownNormal = coolDownNormal / 2;
-            coolDownElec = coolDownElec / 2;
-            coolDownGaz = coolDownGaz / 2;
-            coolDownFire = coolDownFire / 2;
-            coolDownIce = coolDownIce / 2;
-            coolDownShield = coolDownShield / 2;
-            item10 = false;
-        }
-
-        if (item11)
-        {
-            life += lifeAugmentation;
-            item11 = false;
-        }
-
-        if (item12)
-        {
-            item12 = false;
-        }
-
-        if (itemBONUS)
-        {
-            hasShield = true;
-            itemBONUS = false;
-        }
-    }*/
 
     public void ModifyItem(int ID, bool state = default(bool), int value = default(int))
     {
