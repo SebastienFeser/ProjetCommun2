@@ -29,6 +29,7 @@ public class Frisbee : MonoBehaviour {
         frisbeeRigidbody.velocity = frisbeeSpeed;
         SpriteRenderer spr = GetComponentInChildren<SpriteRenderer>();
         ParticleSystemRenderer partRenderer = particleScript.gameObject.GetComponent<ParticleSystemRenderer>();
+        OrientTrail();
         switch (typeFrisbee)
         {
             case EnemyController.deathType.normal:
@@ -64,22 +65,22 @@ public class Frisbee : MonoBehaviour {
 
 	}
 
-    private void FixedUpdate()
+    private void OrientTrail()
     {
-
         Vector3 vectorToTarget = frisbeeRigidbody.velocity;
-        Debug.DrawLine(transform.position, transform.position+vectorToTarget);
+        Debug.DrawLine(transform.position, transform.position + vectorToTarget);
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.AngleAxis(angle+offset, Vector3.forward);
+        Quaternion q = Quaternion.AngleAxis(angle + offset, Vector3.forward);
         trail.rotation = Quaternion.Slerp(trail.rotation, q, Time.deltaTime * 100);
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Wall")
         {
             frisbeeRigidbody.velocity = new Vector2(-(frisbeeRigidbody.velocity.x), frisbeeRigidbody.velocity.y);
+
+            OrientTrail();
         }
         else if (collision.tag == "Roof")
         {
