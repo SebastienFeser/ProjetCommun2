@@ -83,7 +83,7 @@ public class EnemyController : MonoBehaviour {
                 {
                     if (enemy != null)
                     {
-                        enemy.GetComponent<EnemyController>().DestroySequence(enemy);
+                        DestroySequence(enemy);
                     }
                 }
                 DestroySequence(gameObject);
@@ -98,7 +98,7 @@ public class EnemyController : MonoBehaviour {
                 {
                     if (enemy != null)
                     {
-                        enemy.GetComponent<EnemyController>().DestroySequence(enemy);
+                       DestroySequence(enemy);
                     }
                 }
 
@@ -106,7 +106,7 @@ public class EnemyController : MonoBehaviour {
                 {
                     if (enemy != null)
                     {
-                        enemy.GetComponent<EnemyController>().DestroySequence(enemy);
+                        DestroySequence(enemy);
                     }
                 }
                 DestroySequence(gameObject);
