@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
+    [SerializeField] private GameManager gameManagerScript;
     [SerializeField] private GameObject ice;
     [SerializeField] private GameObject particlesDeath;
     [SerializeField] private GameObject shootPrefab;
     [SerializeField] private float shootIntervalMin, shootIntervalMax;
     [SerializeField] private beeType type;
+    [SerializeField] private int value;
     [SerializeField] private int life;
     public int Life
     {
@@ -31,7 +33,7 @@ public class EnemyController : MonoBehaviour {
 
 
     void Start () {
-
+        gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         enemySequenceScript = GameObject.FindGameObjectWithTag("EnemySequence").GetComponent<EnemySequence>();
 
         switch (type)
@@ -73,8 +75,7 @@ public class EnemyController : MonoBehaviour {
         switch (type)
         {
             case deathType.normal:
-                Instantiate(particlesDeath, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                DestroySequence(gameObject);
                 break;
 
             case deathType.electric:
@@ -82,17 +83,14 @@ public class EnemyController : MonoBehaviour {
                 {
                     if (enemy != null)
                     {
-                        Instantiate(particlesDeath, enemy.transform.position, Quaternion.identity);
-                        Destroy(enemy);
+                        enemy.GetComponent<EnemyController>().DestroySequence(enemy);
                     }
                 }
-                Instantiate(particlesDeath, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                DestroySequence(gameObject);
                 break;
 
             case deathType.fire:
-                Instantiate(particlesDeath, toDestroy.transform.position, Quaternion.identity);
-                Destroy(toDestroy);
+                DestroySequence(toDestroy);
                 break;
 
             case deathType.gaz:
@@ -100,8 +98,7 @@ public class EnemyController : MonoBehaviour {
                 {
                     if (enemy != null)
                     {
-                        Instantiate(particlesDeath, enemy.transform.position, Quaternion.identity);
-                        Destroy(enemy);
+                        enemy.GetComponent<EnemyController>().DestroySequence(enemy);
                     }
                 }
 
@@ -109,12 +106,10 @@ public class EnemyController : MonoBehaviour {
                 {
                     if (enemy != null)
                     {
-                        Instantiate(particlesDeath, enemy.transform.position, Quaternion.identity);
-                        Destroy(enemy);
+                        enemy.GetComponent<EnemyController>().DestroySequence(enemy);
                     }
                 }
-                Instantiate(particlesDeath, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                DestroySequence(gameObject);
                 break;
 
             case deathType.ice:
@@ -161,5 +156,12 @@ public class EnemyController : MonoBehaviour {
         {
             frozen = true;
         }
+    }
+
+    public void DestroySequence(GameObject enemyToDestroy)
+    {
+        gameManagerScript.AddMoney(value);
+        Instantiate(particlesDeath, enemyToDestroy.transform.position, Quaternion.identity);
+        Destroy(enemyToDestroy);
     }
 }

@@ -121,6 +121,37 @@ public class Inventory : MonoBehaviour {
             case 14:
                 value = money;
                 break;
+
+            case 15:
+                state = lvl1;
+                break;
+            case 16:
+                state = lvl2;
+                break;
+            case 17:
+                state = lvl3;
+                break;
+            case 18:
+                state = lvl4;
+                break;
+            case 19:
+                state = lvl5;
+                break;
+            case 20:
+                state = lvl6;
+                break;
+            case 21:
+                state = lvl7;
+                break;
+            case 22:
+                state = lvl8;
+                break;
+            case 23:
+                state = lvl9;
+                break;
+            case 24:
+                state = lvl10;
+                break;
         }
     }
 }
