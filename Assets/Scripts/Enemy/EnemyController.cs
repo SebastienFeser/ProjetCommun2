@@ -150,9 +150,16 @@ public class EnemyController : MonoBehaviour {
         DestroyBee(deathType.electric);
     }
 
-    public void ToggleIce(bool state)
+    public void ToggleIce(bool state, bool asLost)
     {
-        ice.SetActive(state);
-        frozen = state;
+        if (!asLost)
+        { 
+            ice.SetActive(state);
+            frozen = state;
+        }
+        else
+        {
+            frozen = true;
+        }
     }
 }
