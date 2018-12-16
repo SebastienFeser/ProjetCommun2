@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45d7aa3e50455f44bf31c93fb9944d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManagerScript: {fileID: 0}
   ice: {fileID: 1533306723650228}
   particlesDeath: {fileID: 1387385673608712, guid: dcbfedc42a18c0a48b7aeb51cf85ef1b,
     type: 2}
@@ -180,6 +181,7 @@ MonoBehaviour:
   shootIntervalMin: 0
   shootIntervalMax: 0
   type: 0
+  value: 150
   life: 1
   enemyGaz: []
   enemyElectric: []
