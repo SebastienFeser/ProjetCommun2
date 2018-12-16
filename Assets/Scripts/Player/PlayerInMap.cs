@@ -10,31 +10,38 @@ public class PlayerInMap : MonoBehaviour {
     GameObject left;
     GameObject right;
 
+    Transform destination;
+
 	// Use this for initialization
 	void Start () {
-		
+        destination = transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, destination.transform.position, playerSpeed);
+
+
+
         if (Input.GetButtonDown("Left") && left != null)
         {
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, left.transform.position, playerSpeed);
+            destination = left.transform;
         }
 
         if (Input.GetButtonDown("Right") && right != null)
         {
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, right.transform.position, playerSpeed);
+            destination = right.transform;
         }
 
         if (Input.GetButtonDown("Up") && up!= null)
         {
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, up.transform.position, playerSpeed);
+            destination = up.transform;
         }
 
         if (Input.GetButtonDown("Down") && down != null)
         {
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, down.transform.position, playerSpeed);
+            destination = down.transform;
         }
     }
 
