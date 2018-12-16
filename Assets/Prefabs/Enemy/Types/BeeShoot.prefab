@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 212069582922725708}
   - component: {fileID: 114196998647506072}
   - component: {fileID: 60994315509548060}
+  - component: {fileID: 95413170559020758}
   m_Layer: 8
   m_Name: BeeShoot
   m_TagString: Enemy
@@ -191,6 +192,24 @@ PolygonCollider2D:
       - {x: 0.02734375, y: -0.8515625}
       - {x: 0.140625, y: -0.734375}
       - {x: 0.1875, y: -0.66796875}
+--- !u!95 &95413170559020758
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263195300046328}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 07b82651622f67e4d994d7df121449ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114196998647506072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45d7aa3e50455f44bf31c93fb9944d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteAnimator: {fileID: 95413170559020758}
   gameManagerScript: {fileID: 0}
   ice: {fileID: 1051968827481286}
   particlesDeath: {fileID: 1387385673608712, guid: dcbfedc42a18c0a48b7aeb51cf85ef1b,

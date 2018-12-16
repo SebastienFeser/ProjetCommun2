@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
+    [SerializeField] private Animator spriteAnimator;
     [SerializeField] private GameManager gameManagerScript;
     [SerializeField] private GameObject ice;
     [SerializeField] private GameObject particlesDeath;
@@ -54,6 +55,8 @@ public class EnemyController : MonoBehaviour {
     }
 	
 	void Update () {
+        spriteAnimator.SetBool("isFrozen", frozen);
+
         if (canShoot)
         {
             StartCoroutine("ShootTimer");
@@ -66,7 +69,11 @@ public class EnemyController : MonoBehaviour {
     {
         if (!frozen)
         {
-            Instantiate(shootPrefab, transform.position, transform.rotation);
+            GameObject shootObj = Instantiate(shootPrefab, transform.position, transform.rotation);
+            if (enemySequenceScript.IsStuck)
+            {
+                shootObj.GetComponent<ShootController>().AsignTarget(enemySequenceScript.Target);
+            }
         }
     }
 

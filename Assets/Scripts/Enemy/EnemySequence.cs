@@ -9,12 +9,16 @@ public class EnemySequence : MonoBehaviour {
     [SerializeField] private int maxMove = 5;
     [SerializeField] private int freezeTime;
     [SerializeField] private List<GameObject> everyEnemy;
+    [SerializeField] private Transform poslow;
+    
     [SerializeField] private int enemyCount;
     public int EnemyCount
     {
         get { return enemyCount; }
     }
-    
+
+    public float lowestBeePos;
+    public GameObject lowestBee;
 
     private enum moveDir { up, down, left, right};
     private moveDir dir;
@@ -23,16 +27,33 @@ public class EnemySequence : MonoBehaviour {
     private bool hasToMove = true;
     private bool frozen = false;
 
-    
+    private bool isStuck;
+    public bool IsStuck
+    {
+        get { return isStuck; }
+    }
+
+    private GameObject target;
+    public GameObject Target
+    {
+        get { return target; }
+    }
+
+    private PosLow posLowScript;
     
 
-	void Start () { 
+	void Start () {
+        posLowScript = poslow.GetComponent<PosLow>();
+        lowestBee = gameObject;
+        lowestBeePos = 150;
         StartCoroutine("Sequence");
         FindAllEnemy();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        isStuck = posLowScript.IsStuck;
+        target = posLowScript.DestroyGM;
         FindAllEnemy();
         transform.position = Vector3.Lerp(transform.position, destination, speed/10);
 	}
@@ -45,8 +66,16 @@ public class EnemySequence : MonoBehaviour {
         foreach(GameObject enemy in enemyArray)
         {
             everyEnemy.Add(enemy);
+            if(enemy.transform.position.y < lowestBeePos)
+            {
+                lowestBeePos = enemy.transform.position.y;
+                lowestBee = enemy;
+            }
         }
-
+        if (lowestBee != null)
+        {
+            poslow.position = new Vector2(poslow.position.x, lowestBeePos - lowestBee.transform.localScale.y);
+        }
         enemyCount = everyEnemy.Count;
 
     }

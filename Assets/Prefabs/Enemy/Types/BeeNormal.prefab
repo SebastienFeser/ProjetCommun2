@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 212263815169767666}
   - component: {fileID: 114576932132672632}
   - component: {fileID: 60176381001322544}
+  - component: {fileID: 95307615944108986}
   m_Layer: 8
   m_Name: BeeNormal
   m_TagString: Enemy
@@ -162,6 +163,24 @@ PolygonCollider2D:
       - {x: 0.04296875, y: -0.48046875}
       - {x: 0.19140625, y: -0.34375}
       - {x: 0.23046875, y: -0.3125}
+--- !u!95 &95307615944108986
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1952771601013572}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 653ce61b850f4a54382ec857a4065449, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114576932132672632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,6 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45d7aa3e50455f44bf31c93fb9944d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteAnimator: {fileID: 95307615944108986}
   gameManagerScript: {fileID: 0}
   ice: {fileID: 1533306723650228}
   particlesDeath: {fileID: 1387385673608712, guid: dcbfedc42a18c0a48b7aeb51cf85ef1b,
@@ -220,7 +240,7 @@ SpriteRenderer:
   m_SortingLayerID: -672897441
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 71484f60271212d4ea1df7d63acb0ef6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d8e09dfc4ce758a4b9dd543a01aceb3e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
