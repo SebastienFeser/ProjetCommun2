@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShopButton : MonoBehaviour {
     [Help("ID's " +
@@ -25,20 +26,52 @@ public class ShopButton : MonoBehaviour {
         "\n" +
         "\n 13: MaxLife" +
         "\n 14: Money")]
-
-    [SerializeField] private int id;
-    [SerializeField] private bool state;
-    [SerializeField] private int value;
-
-
     [SerializeField] private Inventory inventoryScript;
-    [SerializeField] private Toggle toggle;
+    [SerializeField] private Toggle lockState;
+    [SerializeField] private TextMeshProUGUI propertyText;
+    [SerializeField] private TextMeshProUGUI priceText;
 
+    [Header("Configurator")]
+    [SerializeField] private bool isUnlockable;
+    [SerializeField] private bool isUpgradable;
+    [SerializeField] private int price;
+
+    [Header("Property ID")]
+    [SerializeField] private int id;
+
+    [Header("Frisbee Upgrade")]
+    [SerializeField] private int increaseBy;
+
+    [Header("Frisbee Unlock")]
+    [SerializeField] private bool state = true;
+
+
+
+    private int currentMoney;
+    private int currentPropertyValue;
    
 
     private void Start()
     {
+        priceText.text = "Price : " + price;
+
+        InvokeRepeating("check", 0, 1);
+        if (isUpgradable)
+        {
+            propertyText.gameObject.SetActive(true);
+        }
+        else
+        {
+            lockState.gameObject.SetActive(true);
+        }
+
         Invoke("GetInfo", 0.3f);
+    }
+
+    void GetMoney()
+    {
+        bool getBool = false;
+        inventoryScript.GetItemState(out getBool, out currentMoney, 14);
     }
 
     void GetInfo()
@@ -47,12 +80,41 @@ public class ShopButton : MonoBehaviour {
         bool getBool = false;
 
         inventoryScript.GetItemState(out getBool, out getValue, id);
-        toggle.isOn = getBool;
+        if (isUpgradable)
+        {
+            currentPropertyValue = getValue;
+            propertyText.text = "Value : " + currentPropertyValue.ToString();
+        }
+        else
+        {
+            lockState.isOn = getBool;
+        }
+
+        GetMoney();
     }
 
-    public void ChangeValue() {
-        state = !state;
-        inventoryScript.ModifyItem(id, state, value);
+    public void BuyFrisbee() {
+        if (price < currentMoney)
+        {
+            inventoryScript.ModifyItem(14, false, currentMoney - price);
+            inventoryScript.ModifyItem(id, state, increaseBy);
+            GetInfo();
+        }
+
+        GetMoney();
+    }
+
+    public void ResetJSON()
+    {
+        for(int i = 0; i < 14; i++)
+        {
+            inventoryScript.ModifyItem(i, false, 0);
+        }
+        inventoryScript.ModifyItem(14, false, 2500); //SET money
+    }
+
+    void check()
+    {
         GetInfo();
     }
 }
