@@ -19,6 +19,7 @@ TagManager:
   - Enemy_Limit
   - FrisbeeKeeper
   - GameManager
+  - MapPoint
   layers:
   - Default
   - TransparentFX
