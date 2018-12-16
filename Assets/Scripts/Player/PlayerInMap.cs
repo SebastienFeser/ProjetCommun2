@@ -10,6 +10,8 @@ public class PlayerInMap : MonoBehaviour {
     GameObject left;
     GameObject right;
 
+    [SerializeField] Rigidbody2D playerRigidBody;
+
     Transform destination;
 
 	// Use this for initialization
@@ -23,25 +25,27 @@ public class PlayerInMap : MonoBehaviour {
         gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, destination.transform.position, playerSpeed);
 
 
-
-        if (Input.GetButtonDown("Left") && left != null)
+        if (playerRigidBody.velocity.magnitude < 0.1f)
         {
-            destination = left.transform;
-        }
+            if (Input.GetButtonDown("Left") && left != null)
+            {
+                destination = left.transform;
+            }
 
-        if (Input.GetButtonDown("Right") && right != null)
-        {
-            destination = right.transform;
-        }
+            if (Input.GetButtonDown("Right") && right != null)
+            {
+                destination = right.transform;
+            }
 
-        if (Input.GetButtonDown("Up") && up!= null)
-        {
-            destination = up.transform;
-        }
+            if (Input.GetButtonDown("Up") && up != null)
+            {
+                destination = up.transform;
+            }
 
-        if (Input.GetButtonDown("Down") && down != null)
-        {
-            destination = down.transform;
+            if (Input.GetButtonDown("Down") && down != null)
+            {
+                destination = down.transform;
+            }
         }
     }
 
