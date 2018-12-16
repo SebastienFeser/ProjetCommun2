@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerInMap : MonoBehaviour {
     [SerializeField] float playerSpeed = 2;
 
+    GameObject up;
+    GameObject down;
+    GameObject left;
+    GameObject right;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -12,33 +17,41 @@ public class PlayerInMap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetButtonDown("Left") && left != null)
+        {
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, left.transform.position, playerSpeed);
+        }
 
-    private void OnTriggerStay2D(Collider2D collision)
+        if (Input.GetButtonDown("Right") && right != null)
+        {
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, right.transform.position, playerSpeed);
+        }
+
+        if (Input.GetButtonDown("Up") && up!= null)
+        {
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, up.transform.position, playerSpeed);
+        }
+
+        if (Input.GetButtonDown("Down") && down != null)
+        {
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, down.transform.position, playerSpeed);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "MapPoint")
         {
-            Debug.Log("test");
-            if (Input.GetButtonDown("Left") && collision.gameObject.GetComponent<MapPoints>().leftPoint != null)
-            {
-                gameObject.transform.position = Vector3.Lerp(collision.gameObject.transform.position, collision.gameObject.GetComponent<MapPoints>().leftPoint.transform.position, playerSpeed);
-            }
-
-            if (Input.GetButtonDown("Right") && collision.gameObject.GetComponent<MapPoints>().rightPoint != null)
-            {
-                gameObject.transform.position = Vector3.Lerp(collision.gameObject.transform.position, collision.gameObject.GetComponent<MapPoints>().rightPoint.transform.position, playerSpeed);
-            }
-
-            if (Input.GetButtonDown("Up") && collision.gameObject.GetComponent<MapPoints>().upPoint != null)
-            {
-                gameObject.transform.position = Vector3.Lerp(collision.gameObject.transform.position, collision.gameObject.GetComponent<MapPoints>().upPoint.transform.position, playerSpeed);
-            }
-
-            if (Input.GetButtonDown("Down") && collision.gameObject.GetComponent<MapPoints>().downPoint != null)
-            {
-                gameObject.transform.position = Vector3.Lerp(collision.gameObject.transform.position, collision.gameObject.GetComponent<MapPoints>().downPoint.transform.position, playerSpeed);
-            }
+            up = null;
+            down = null;
+            left = null;
+            right = null;
+            up = collision.gameObject.GetComponent<MapPoints>().upPoint;
+            down = collision.gameObject.GetComponent<MapPoints>().downPoint;
+            left = collision.gameObject.GetComponent<MapPoints>().leftPoint;
+            right = collision.gameObject.GetComponent<MapPoints>().rightPoint;
         }
     }
+
+    
 }
