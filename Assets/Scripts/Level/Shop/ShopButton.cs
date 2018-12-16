@@ -53,8 +53,6 @@ public class ShopButton : MonoBehaviour {
 
     private void Start()
     {
-        priceText.text = "Price : " + price;
-
         InvokeRepeating("check", 0, 1);
         if (isUpgradable)
         {
@@ -66,6 +64,8 @@ public class ShopButton : MonoBehaviour {
         }
 
         Invoke("GetInfo", 0.3f);
+        priceText.text = "Price : " + price;
+
     }
 
     void GetMoney()

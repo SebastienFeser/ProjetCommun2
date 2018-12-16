@@ -4,96 +4,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
     [SerializeField] private JSON_Save jsonSave;
-    /*float life;
-    float lifeAugmentation = 50;
-
-    float freezeTime;
-    float shieldEffectTime;
-
-    bool shieldMirroring = false;   //Send back projectiles
-
-    #region Has Frisbe
-    bool hasIce = false;
-    bool hasFire = false;
-    bool hasElec = false;
-    bool hasGaz = false;
-    bool hasShield = false;
-    #endregion
-
-    #region Frisbe cooldown
-    float coolDownNormal;
-    float coolDownElec;
-    float coolDownGaz;
-    float coolDownFire;
-    float coolDownIce;
-    float coolDownShield;
-
-    public float CoolDownNormal
-    {
-        get
-        {
-            return coolDownNormal;
-        }
-    }
-
-    public float CoolDownElec
-    {
-        get
-        {
-            return coolDownElec;
-        }
-    }
-
-    public float CoolDownGaz
-    {
-        get
-        {
-            return coolDownGaz;
-        }
-    }
-
-    public float CoolDownFire
-    {
-        get
-        {
-            return coolDownFire;
-        }
-    }
-
-    public float CoolDownIce
-    {
-        get
-        {
-            return coolDownIce;
-        }
-    }
-
-    public float CoolDownShield
-    {
-        get
-        {
-            return coolDownShield;
-        }
-    }
-    #endregion
-
-    #region Bolleans for Shop items
-    bool item1;                     //Frisbe elec                               DONE
-    bool item2;                     //Frisbe gaz                                DONE
-    bool item3;                     //Cooldown fris normal reduction            DONE
-    bool item4;                     //Shield activated time++                   DONE
-    bool item5;                     //Frisbe fire                               DONE
-    bool item6;                     //Frisbe ice                                DONE
-    bool item7;                     //Shield send back projectiles              DONE
-    bool item8;                     //Ice slow time++                           DONE
-    bool item9;                     //Gaz range++ //NOPE
-    bool item10;                    //Cooldown all fris --                      DONE
-    bool item11;                    //More life
-    bool item12;                    //Electric fris explode armored bees
-    bool itemBONUS;                 //Frisbe shield                             DONE
-    #endregion*/
 
     [SerializeField] private bool ice_Obtained, fire_Obtained, gaz_Obtained, electric_Obtained, shield_Obtained, shield_SendBack;
+    [SerializeField] private bool lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9, lvl10;
     [SerializeField] private int ice_Cooldown, ice_FreezeTime, fire_Cooldown, gaz_Cooldown, electric_Cooldown, shield_Cooldown, shield_ActiveTime, maxLife, money;
 
     void Start () {
@@ -127,6 +40,19 @@ public class Inventory : MonoBehaviour {
 
         maxLife           = SavedInventory.MaxLife;
         money             = SavedInventory.Money;
+
+        lvl1              = SavedInventory.lvl1;
+        lvl2              = SavedInventory.lvl2;
+        lvl3              = SavedInventory.lvl3;
+        lvl4              = SavedInventory.lvl4;
+        lvl5              = SavedInventory.lvl5;
+        lvl6              = SavedInventory.lvl6;
+        lvl7              = SavedInventory.lvl7;
+        lvl8              = SavedInventory.lvl8;
+        lvl9              = SavedInventory.lvl9;
+        lvl10             = SavedInventory.lvl10;
+
+
     }
 
     public void GetItemState(out bool state, out int value, int id)

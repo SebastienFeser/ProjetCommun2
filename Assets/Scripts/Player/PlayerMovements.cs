@@ -7,6 +7,10 @@ public class PlayerMovements : MonoBehaviour {
     [SerializeField] Rigidbody2D playerRigidBody2D;
     [SerializeField] float playerMovementSpeed = 5f;
     [SerializeField] float life = 100;
+    public float Life
+    {
+        get { return life; }
+    }
     [SerializeField] Image lifeBar;
     float lifeBarSize;
     [SerializeField] float projectilesDamages = 20;
@@ -16,7 +20,6 @@ public class PlayerMovements : MonoBehaviour {
     
 	void Start () {
         lifeBarSize = life;
-		
 	}
 	
 	void Update () {

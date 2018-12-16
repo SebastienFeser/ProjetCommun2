@@ -9,6 +9,12 @@ public class EnemySequence : MonoBehaviour {
     [SerializeField] private int maxMove = 5;
     [SerializeField] private int freezeTime;
     [SerializeField] private List<GameObject> everyEnemy;
+    [SerializeField] private int enemyCount;
+    public int EnemyCount
+    {
+        get { return enemyCount; }
+    }
+    
 
     private enum moveDir { up, down, left, right};
     private moveDir dir;
@@ -16,6 +22,9 @@ public class EnemySequence : MonoBehaviour {
 
     private bool hasToMove = true;
     private bool frozen = false;
+
+    
+    
 
 	void Start () { 
         StartCoroutine("Sequence");
@@ -38,13 +47,15 @@ public class EnemySequence : MonoBehaviour {
             everyEnemy.Add(enemy);
         }
 
+        enemyCount = everyEnemy.Count;
+
     }
 
-    public void ToggleIce(bool state)
+    public void ToggleIce(bool state, bool asLost = default(bool))
     {
         foreach(GameObject enemy in everyEnemy)
         {
-            enemy.GetComponent<EnemyController>().ToggleIce(state);
+            enemy.GetComponent<EnemyController>().ToggleIce(state, asLost);
         }
     }
 
@@ -140,5 +151,11 @@ public class EnemySequence : MonoBehaviour {
         frozen = false;
         ToggleIce(false);
         
+    }
+
+    public void Stop()
+    {
+        frozen = true;
+        ToggleIce(false, true);
     }
 }
