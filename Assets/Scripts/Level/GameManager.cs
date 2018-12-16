@@ -19,17 +19,14 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private int money, addedMoney;
 
     private bool callOnce = true;
-
+    
     private void Start()
     {
         levelID += 14;
         frisbeeKeeper = GameObject.FindGameObjectWithTag("FrisbeeKeeper");
         thisLevel = SceneManager.GetActiveScene().name + "_Intro";
 
-        bool fooBool;
-        inventoryScript.GetItemState(out fooBool, out money, 14);
-        textMoney.text = "Money : " + money.ToString();
-        Debug.Log(money);
+        Invoke("GetMoney", 0.1f);
 
         FrisbeeKeeper fk = frisbeeKeeper.GetComponent<FrisbeeKeeper>();
         
@@ -68,12 +65,25 @@ public class GameManager : MonoBehaviour {
             callOnce = false;
             winText.SetActive(true);
             inventoryScript.ModifyItem(levelID, true);
+            inventoryScript.ModifyItem(14, false, money + addedMoney);
         }
 	}
 
 
+    void GetMoney()
+    {
+        int mon = 0 ;
+        bool fooBool;
+        inventoryScript.GetItemState(out fooBool, out mon, 14);
+        money = mon;
+        textMoney.text = "Money : " + money.ToString();
+       
+    }
+
     public void AddMoney(int moneyToAdd) {
         addedMoney += moneyToAdd;
+        textMoney.text = "Money : " + (money + addedMoney).ToString() ;
+
     }
 
     public void AsLost()
