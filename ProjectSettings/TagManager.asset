@@ -16,6 +16,8 @@ TagManager:
   - Shield
   - Enemy
   - EnemySequence
+  - Enemy_Limit
+  - FrisbeeKeeper
   layers:
   - Default
   - TransparentFX

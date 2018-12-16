@@ -32,6 +32,8 @@ public class JSON_Save : MonoBehaviour {
 
         public int MaxLife;
         public int Money;
+
+        public bool lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9, lvl10;
     }
 
 
@@ -118,6 +120,47 @@ public class JSON_Save : MonoBehaviour {
             case 14:
                 JsonUtility.FromJsonOverwrite(json, valuesState.Money);
                 valuesState.Money = valueInt;
+                break;
+
+            case 15:
+                JsonUtility.FromJsonOverwrite(json, valuesState.lvl1);
+                valuesState.lvl1 = state;
+                break;
+            case 16:
+                JsonUtility.FromJsonOverwrite(json, valuesState.lvl2);
+                valuesState.lvl2 = state;
+                break;
+            case 17:
+                JsonUtility.FromJsonOverwrite(json, valuesState.lvl3);
+                valuesState.lvl3 = state;
+                break;
+            case 18:
+                JsonUtility.FromJsonOverwrite(json, valuesState.lvl4);
+                valuesState.lvl4 = state;
+                break;
+            case 19:
+                JsonUtility.FromJsonOverwrite(json, valuesState.lvl5);
+                valuesState.lvl5 = state;
+                break;
+            case 20:
+                JsonUtility.FromJsonOverwrite(json, valuesState.lvl6);
+                valuesState.lvl6 = state;
+                break;
+            case 21:
+                JsonUtility.FromJsonOverwrite(json, valuesState.lvl7);
+                valuesState.lvl7 = state;
+                break;
+            case 22:
+                JsonUtility.FromJsonOverwrite(json, valuesState.lvl8);
+                valuesState.lvl8 = state;
+                break;
+            case 23:
+                JsonUtility.FromJsonOverwrite(json, valuesState.lvl9);
+                valuesState.lvl9 = state;
+                break;
+            case 24:
+                JsonUtility.FromJsonOverwrite(json, valuesState.lvl10);
+                valuesState.lvl10 = state;
                 break;
         }
 

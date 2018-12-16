@@ -732,6 +732,7 @@ MonoBehaviour:
   maxMove: 2
   freezeTime: 10
   everyEnemy: []
+  enemyCount: 0
 --- !u!114 &114549357257249790
 MonoBehaviour:
   m_ObjectHideFlags: 1

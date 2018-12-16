@@ -206,10 +206,10 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0, y: 1}
-      - {x: -0.95105654, y: 0.30901697}
+      - {x: -0.5473084, y: 0.21584463}
       - {x: -0.5877852, y: -0.80901706}
       - {x: 0.58778536, y: -0.80901694}
-      - {x: 0.9510565, y: 0.30901712}
+      - {x: 0.5007217, y: 0.20031548}
 --- !u!114 &114479686277790280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -235,8 +235,8 @@ MonoBehaviour:
   normalCoolDownTime: 1
   electricCoolDownTime: 1
   gazCoolDownTime: 1
-  fireCoolDownTime: 15
-  iceCoolDownTime: 30
+  fireCoolDownTime: 1
+  iceCoolDownTime: 1
 --- !u!114 &114820949835110396
 MonoBehaviour:
   m_ObjectHideFlags: 1
