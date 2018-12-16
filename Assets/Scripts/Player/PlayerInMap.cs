@@ -53,10 +53,7 @@ public class PlayerInMap : MonoBehaviour {
     {
         if (collision.tag == "MapPoint")
         {
-            up = null;
-            down = null;
-            left = null;
-            right = null;
+            
             up = collision.gameObject.GetComponent<MapPoints>().upPoint;
             down = collision.gameObject.GetComponent<MapPoints>().downPoint;
             left = collision.gameObject.GetComponent<MapPoints>().leftPoint;
@@ -64,5 +61,13 @@ public class PlayerInMap : MonoBehaviour {
         }
     }
 
-    
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        up = null;
+        down = null;
+        left = null;
+        right = null;
+    }
+
+
 }
