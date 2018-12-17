@@ -113,10 +113,12 @@ public class FrisbeeSelector : MonoBehaviour {
     {
         if (toggleGaz.isOn)
         {
+            currentFrisbeeCount++;
             frisbeeKeeperScript.HasGaz = true;
         }
         else
         {
+            currentFrisbeeCount--;
             frisbeeKeeperScript.HasGaz = false;
         }
     }
