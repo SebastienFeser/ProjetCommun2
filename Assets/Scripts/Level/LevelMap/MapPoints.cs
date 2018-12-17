@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class MapPoints : MonoBehaviour {
 
+    [SerializeField] GameObject player;
+
     [SerializeField] public GameObject leftPoint;
     [SerializeField] public GameObject rightPoint;
     [SerializeField] public GameObject upPoint;
     [SerializeField] public GameObject downPoint;
 
-    bool canMove = true;
+    [SerializeField] bool canMoveUp = true;
+    [SerializeField] bool canMoveDown = true;
+    [SerializeField] bool canMoveLeft = true;
+    [SerializeField] bool canMoveRight = true;
 
-	// Use this for initialization
+    [SerializeField] public int levelSelection;
+
+    bool canMove = true;
+    bool levelPassed = false;
+    
 	void Start () {
-		
+        // if levelPassed, all can move = true
+
+        if (!canMoveUp)
+            upPoint = null;
+        if (!canMoveDown)
+            downPoint = null;
+        if (!canMoveLeft)
+            leftPoint = null;
+        if (!canMoveRight)
+            rightPoint = null;
 	}
 	
-	// Update is called once per frame
 	void Update () {
-       
+
 	}
 
     
