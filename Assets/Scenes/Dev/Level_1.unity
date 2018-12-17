@@ -1083,12 +1083,12 @@ MonoBehaviour:
   electricHit: {fileID: 8300000, guid: e30efc2b06a57e5408ec674818e547a5, type: 3}
   electricShoot: {fileID: 8300000, guid: dacf4f01de944da47bb234c3f2836d7f, type: 3}
   gazHit: {fileID: 8300000, guid: 39dfbb5ef7280334ab223fe362c070ec, type: 3}
-  gazShoot: {fileID: 0}
-  fireHit: {fileID: 0}
-  fireShoot: {fileID: 0}
-  iceHit: {fileID: 0}
-  iceShoot: {fileID: 0}
-  normalHit: {fileID: 0}
+  gazShoot: {fileID: 8300000, guid: fc74299a0a1892a48a02d46de2dc8fad, type: 3}
+  fireHit: {fileID: 8300000, guid: c139094b2f560b6469e16c73b8bccf3f, type: 3}
+  fireShoot: {fileID: 8300000, guid: 20ff4d61c89b2de4fa4e6b3dba3f1c84, type: 3}
+  iceHit: {fileID: 8300000, guid: 1aba0249d54f33340b712e3e1ba88d56, type: 3}
+  iceShoot: {fileID: 8300000, guid: 62b92c55b1d6d8b49b3148ae96b89563, type: 3}
+  normalHit: {fileID: 8300000, guid: 10c7b2df68d0a9945846e2aa3823ec2f, type: 3}
   normalShoot: {fileID: 0}
   playerDying: {fileID: 0}
   playerHit: {fileID: 0}
