@@ -5,13 +5,65 @@ using UnityEngine;
 public class DetectLoose : MonoBehaviour {
 
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private float speed;
+    [SerializeField] private Color color;
+    [SerializeField] private Transform posLow;
+
+    private SpriteRenderer spr;
+    private int distanceUntilLoose;
+
+    private void Start()
+    {
+        spr = GetComponent<SpriteRenderer>();
+        StartCoroutine("Blink");
+    }
+
+    private void Update()
+    {
+        distanceUntilLoose = Mathf.RoundToInt(transform.position.y - posLow.position.y);
+        switch (distanceUntilLoose)
+        {
+            case -7:
+                speed = 2;
+                break;
+            case -5:
+                speed = 4;
+                break;
+            case -3:
+                speed = 8;
+                break;
+            case -1:
+                speed = 16;
+                break;
+        }
+        spr.color = color;
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Enemy")
         {
             gameManager.AsLost();
-            
         }
+    }
+
+    IEnumerator Blink()
+    {
+
+        while (true) {
+            for (float i = 0; i < 0.2f; i += 0.01f)
+            {
+                color = new Color(1, 0, 0, i);
+                yield return new WaitForSeconds(1/(speed*5));
+            }
+
+            for (float i = 0.2f; i > 0; i -= 0.01f)
+            {
+                color = new Color(1, 0, 0, i);
+                yield return new WaitForSeconds(1/(speed*5));
+            }
+        }
+        
+       
     }
 }
