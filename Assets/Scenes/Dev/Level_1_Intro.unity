@@ -2296,6 +2296,16 @@ MonoBehaviour:
     Shield_SendBack: 0
     MaxLife: 0
     Money: 0
+    lvl1: 0
+    lvl2: 0
+    lvl3: 0
+    lvl4: 0
+    lvl5: 0
+    lvl6: 0
+    lvl7: 0
+    lvl8: 0
+    lvl9: 0
+    lvl10: 0
 --- !u!114 &1929987307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2314,6 +2324,16 @@ MonoBehaviour:
   electric_Obtained: 0
   shield_Obtained: 0
   shield_SendBack: 0
+  lvl1: 0
+  lvl2: 0
+  lvl3: 0
+  lvl4: 0
+  lvl5: 0
+  lvl6: 0
+  lvl7: 0
+  lvl8: 0
+  lvl9: 0
+  lvl10: 0
   ice_Cooldown: 0
   ice_FreezeTime: 0
   fire_Cooldown: 0
