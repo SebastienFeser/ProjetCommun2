@@ -21,6 +21,7 @@ TagManager:
   - GameManager
   - MapPoint
   - Block
+  - FxPlayer
   layers:
   - Default
   - TransparentFX

@@ -33,6 +33,11 @@ public class FxPlayer : MonoBehaviour {
 
     public void PlaySound(sounds soundToPlay)
     {
+        Debug.Log("Call");
+
+        //audioSourceComponent = GetComponent<AudioSource>();
+        
+
         switch (soundToPlay)
         {
             case sounds.enemyShoot:
@@ -51,13 +56,22 @@ public class FxPlayer : MonoBehaviour {
                 audioSourceComponent.PlayOneShot(gazShoot);
                 break;
             case sounds.fireHit:
+                audioSourceComponent.PlayOneShot(fireHit);
+                break;
+            case sounds.fireShoot:
                 audioSourceComponent.PlayOneShot(fireShoot);
                 break;
             case sounds.iceHit:
+                audioSourceComponent.PlayOneShot(iceHit);
+                break;
+            case sounds.iceShoot:
                 audioSourceComponent.PlayOneShot(iceShoot);
                 break;
-            case sounds.normalHit:
+            case sounds.normalShoot:
                 audioSourceComponent.PlayOneShot(normalShoot);
+                break;
+            case sounds.normalHit:
+                audioSourceComponent.PlayOneShot(normalHit);
                 break;
             case sounds.playerDying:
                 audioSourceComponent.PlayOneShot(playerDying);

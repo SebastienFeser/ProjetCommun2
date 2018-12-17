@@ -17,8 +17,10 @@ public class PlayerMovements : MonoBehaviour {
 
     bool isMovingRight;
     bool isMovingLeft;
-    
+
 	void Start () {
+
+
         lifeBarSize = life;
 	}
 	
