@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInMap : MonoBehaviour {
-    [SerializeField] float playerSpeed = 2;
+    float playerSpeed = 0.1f;
+
+
 
     GameObject up;
     GameObject down;
@@ -13,6 +15,8 @@ public class PlayerInMap : MonoBehaviour {
     [SerializeField] Rigidbody2D playerRigidBody;
 
     Transform destination;
+
+    public int levelToSelect;
 
 	// Use this for initialization
 	void Start () {
@@ -47,6 +51,57 @@ public class PlayerInMap : MonoBehaviour {
                 destination = down.transform;
             }
         }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            switch (levelToSelect)
+            {
+                case 0:
+                    break;
+                case 1:
+                    //Load Level 1
+                    break;
+                case 2:
+                    //Load Level 2
+                    break;
+                case 3:
+                    //Load Level 3
+                    break;
+                case 4:
+                    //Load Level 4
+                    break;
+                case 5:
+                    //Load Level 5
+                    break;
+                case 6:
+                    //Load Level 6
+                    break;
+                case 7:
+                    //Load Level 7
+                    break;
+                case 8:
+                    //Load Level 8
+                    break;
+                case 9:
+                    //Load Level 9
+                    break;
+                case 10:
+                    //Load Level 10
+                    break;
+                case 31:
+                    //Load Shop 1
+                    break;
+                case 32:
+                    //Load Shop 2
+                    break;
+                case 33:
+                    //Load Shop 3
+                    break;
+                default:
+                    break;
+
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,6 +113,7 @@ public class PlayerInMap : MonoBehaviour {
             down = collision.gameObject.GetComponent<MapPoints>().downPoint;
             left = collision.gameObject.GetComponent<MapPoints>().leftPoint;
             right = collision.gameObject.GetComponent<MapPoints>().rightPoint;
+            levelToSelect = collision.gameObject.GetComponent<MapPoints>().levelSelection;
         }
     }
 
@@ -67,6 +123,7 @@ public class PlayerInMap : MonoBehaviour {
         down = null;
         left = null;
         right = null;
+        levelToSelect = 0;
     }
 
 

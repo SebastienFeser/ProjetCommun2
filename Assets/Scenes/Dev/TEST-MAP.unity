@@ -173,10 +173,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39746030b0b644548a4cc268075eb7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   leftPoint: {fileID: 1720064174}
   rightPoint: {fileID: 0}
   upPoint: {fileID: 0}
   downPoint: {fileID: 0}
+  canMoveUp: 1
+  canMoveDown: 1
+  canMoveLeft: 1
+  canMoveRight: 1
+  levelSelection: 0
 --- !u!4 &830677022
 Transform:
   m_ObjectHideFlags: 0
@@ -268,8 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32f99d5f37c2ec41b41c0ae0f51e529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 0.05
   playerRigidBody: {fileID: 873584193}
+  levelToSelect: 0
 --- !u!58 &873584196
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -326,10 +332,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39746030b0b644548a4cc268075eb7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   leftPoint: {fileID: 0}
   rightPoint: {fileID: 0}
   upPoint: {fileID: 0}
   downPoint: {fileID: 1720064174}
+  canMoveUp: 1
+  canMoveDown: 1
+  canMoveLeft: 1
+  canMoveRight: 1
+  levelSelection: 0
 --- !u!58 &1545561790
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -373,10 +385,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39746030b0b644548a4cc268075eb7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   leftPoint: {fileID: 0}
   rightPoint: {fileID: 1720064174}
   upPoint: {fileID: 0}
   downPoint: {fileID: 0}
+  canMoveUp: 1
+  canMoveDown: 1
+  canMoveLeft: 1
+  canMoveRight: 1
+  levelSelection: 0
 --- !u!4 &1558063369
 Transform:
   m_ObjectHideFlags: 0
@@ -585,10 +603,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39746030b0b644548a4cc268075eb7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   leftPoint: {fileID: 1558063367}
   rightPoint: {fileID: 830677020}
   upPoint: {fileID: 1545561787}
   downPoint: {fileID: 0}
+  canMoveUp: 1
+  canMoveDown: 1
+  canMoveLeft: 1
+  canMoveRight: 1
+  levelSelection: 0
 --- !u!4 &1720064176
 Transform:
   m_ObjectHideFlags: 0
