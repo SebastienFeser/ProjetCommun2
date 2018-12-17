@@ -142,7 +142,15 @@ public class EnemyController : MonoBehaviour {
     IEnumerator ShootTimer()
     {
         canShoot = false;
-        float RDMN = Random.Range(shootIntervalMin, shootIntervalMax);
+        float RDMN;
+        if (!enemySequenceScript.DestroyBlock)
+        {
+            RDMN = Random.Range(shootIntervalMin, shootIntervalMax);
+        }
+        else
+        {
+            RDMN = 0.5f;
+        }
         yield return new WaitForSeconds(RDMN);
         canShoot = true;
     }

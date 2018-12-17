@@ -24,8 +24,16 @@ public class ShootController : MonoBehaviour {
         }
         else
         {
-            Vector3 diff = target.transform.position - transform.position;
-            diff.Normalize();
+            Vector3 diff = Vector3.zero;
+            if(target != null)
+            {
+                diff = target.transform.position - transform.position;
+                diff.Normalize();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
 
             float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
@@ -40,5 +48,12 @@ public class ShootController : MonoBehaviour {
         shootTowardBlock = true;
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

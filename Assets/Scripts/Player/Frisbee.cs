@@ -101,6 +101,11 @@ public class Frisbee : MonoBehaviour {
                 collision.gameObject.GetComponent<EnemyController>().DestroyBee(typeFrisbee, collision.gameObject);
             }
         }
+        else if (collision.tag == "Block")
+        {
+            collision.gameObject.GetComponent<Block>().LowerLife(5);
+            Destroy(gameObject);
+        }
     }
 
 }
