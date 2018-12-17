@@ -39,6 +39,10 @@ public class JSON_Save : MonoBehaviour {
 
     private void Awake()
     {
+        if (!System.IO.File.Exists(Application.dataPath + "/Inventory.json"))
+        {
+            WriteJson(0, false, 0);
+        }
         valuesState = new Values();
         ReadJson();
     }
