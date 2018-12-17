@@ -8,6 +8,7 @@ public class DetectLoose : MonoBehaviour {
     [SerializeField] private float speed;
     [SerializeField] private Color color;
     [SerializeField] private Transform posLow;
+    [SerializeField] private GameObject shootRoof;
 
     private SpriteRenderer spr;
     private int distanceUntilLoose;
@@ -31,6 +32,7 @@ public class DetectLoose : MonoBehaviour {
                 break;
             case -3:
                 speed = 8;
+                shootRoof.SetActive(true);
                 break;
             case -1:
                 speed = 16;
