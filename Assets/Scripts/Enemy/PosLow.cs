@@ -17,12 +17,15 @@ public class PosLow : MonoBehaviour {
         set { destroyGM = value; }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(1, 0, 0, 0.3f);
-        Gizmos.DrawCube(transform.position, transform.localScale);
-    }
-
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

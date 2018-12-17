@@ -12,8 +12,6 @@ public class Inventory : MonoBehaviour {
     void Start () {
         jsonSave.ReadJson();
         UpdateInventory(jsonSave.valuesState);
-        ModifyItem(14, false, 2300);
-
     }
 
     public void ModifyItem(int ID, bool state = default(bool), int value = default(int))
