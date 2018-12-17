@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private Inventory inventoryScript;
     [SerializeField] private int levelID;
     [SerializeField] private TextMeshProUGUI textMoney;
-    [SerializeField] private int money, addedMoney;
+    [SerializeField] private float money, addedMoney;
 
     private bool callOnce = true;
     
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour {
 
     void GetMoney()
     {
-        int mon = 0 ;
+        float mon = 0 ;
         bool fooBool;
         inventoryScript.GetItemState(out fooBool, out mon, 14);
         money = mon;

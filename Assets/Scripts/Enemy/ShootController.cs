@@ -14,9 +14,16 @@ public class ShootController : MonoBehaviour {
 
     Vector2 toTarget;
     private Rigidbody2D rigid;
+    private FxPlayer audioPlayer;
 
-    // Use this for initialization
     void Start () {
+        audioPlayer = GameObject.FindGameObjectWithTag("FxPlayer").GetComponent<FxPlayer>();
+
+        float RDMN = Random.Range(0.0f, 100.0f);
+        if(RDMN > 30) {
+            audioPlayer.PlaySound(FxPlayer.sounds.enemyShoot);
+
+        }
         rigid = GetComponent<Rigidbody2D>();
         if (!shootTowardBlock)
         {

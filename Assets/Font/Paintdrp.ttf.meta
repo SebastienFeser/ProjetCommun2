@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 95131a2167b3b9649af8e1897fcfd943
+guid: 1832c277951b316489d90003375b5c25
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: CF Nightmare PERSONAL
+  fontName: Paintdrips
   fontNames:
-  - CF Nightmare PERSONAL
+  - Paintdrips
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

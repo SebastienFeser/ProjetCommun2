@@ -29,7 +29,7 @@ public class LaserMovements : MonoBehaviour {
             return frisbeeVectorSpeed;
         }
     }
-    public FxPlayer audioPlayer;
+    private FxPlayer audioPlayer;
     #region Used for Speed Calculator
     float frisbeeXVelocity;
     float frisbeeYVelocity;

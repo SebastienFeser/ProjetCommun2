@@ -3,7 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FxPlayer : MonoBehaviour {
-    [SerializeField] private AudioClip ennemyShoot, electricHit, electricShoot, gazHit, gazShoot, fireHit, fireShoot, iceHit, iceShoot, normalHit, normalShoot, playerDying, playerHit, buyingShop;
+    [SerializeField] private AudioClip ennemyShoot,
+        electricHit, 
+        electricShoot, 
+        gazHit, 
+        gazShoot, 
+        fireHit, 
+        fireShoot, 
+        iceHit, 
+        iceShoot, 
+        normalHit, 
+        normalShoot, 
+        playerDying, 
+        playerHit, 
+        buyingShop,
+        iceFroze;
+
     public enum sounds {
         enemyShoot,
         electricHit,
@@ -18,7 +33,8 @@ public class FxPlayer : MonoBehaviour {
         normalShoot,
         playerDying,
         playerHit,
-        buyingShop };
+        buyingShop,
+        iceFroze};
 
     private AudioSource audioSourceComponent;
 
@@ -32,11 +48,7 @@ public class FxPlayer : MonoBehaviour {
 	}
 
     public void PlaySound(sounds soundToPlay)
-    {
-        Debug.Log("Call");
-
-        //audioSourceComponent = GetComponent<AudioSource>();
-        
+    {         
 
         switch (soundToPlay)
         {
@@ -81,6 +93,9 @@ public class FxPlayer : MonoBehaviour {
                 break;
             case sounds.buyingShop:
                 audioSourceComponent.PlayOneShot(buyingShop);
+                break;
+            case sounds.iceFroze:
+                audioSourceComponent.PlayOneShot(iceFroze);
                 break;
         }
     }
