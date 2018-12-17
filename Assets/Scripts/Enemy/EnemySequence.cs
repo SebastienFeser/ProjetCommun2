@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySequence : MonoBehaviour {
-    [SerializeField] private float moveLength;
+    [SerializeField] private float moveLength, downLength;
     [SerializeField] private float speed, time;
     [SerializeField] private RowSpawner rowSpawnerScript;
     [SerializeField] private int maxMove = 5;
     [SerializeField] private int freezeTime;
     [SerializeField] private List<GameObject> everyEnemy;
+    [SerializeField] private Transform poslow;
+    [SerializeField] private bool destroyBlock;
+    public bool DestroyBlock
+    {
+        get { return destroyBlock; }
+    }
+    
     [SerializeField] private int enemyCount;
     public int EnemyCount
     {
         get { return enemyCount; }
     }
-    
+
+    public float lowestBeePos;
+    public GameObject lowestBee;
 
     private enum moveDir { up, down, left, right};
     private moveDir dir;
@@ -23,16 +32,35 @@ public class EnemySequence : MonoBehaviour {
     private bool hasToMove = true;
     private bool frozen = false;
 
-    
+    private bool isStuck;
+    public bool IsStuck
+    {
+        get { return isStuck; }
+        set { isStuck = value; }
+    }
+
+    private GameObject target;
+    public GameObject Target
+    {
+        get { return target; }
+    }
+
+    private PosLow posLowScript;
     
 
-	void Start () { 
+	void Start () {
+        posLowScript = poslow.GetComponent<PosLow>();
+        lowestBee = gameObject;
+        lowestBeePos = 150;
         StartCoroutine("Sequence");
         FindAllEnemy();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+        isStuck = posLowScript.IsStuck;
+        target = posLowScript.DestroyGM;
+        destroyBlock = isStuck;
         FindAllEnemy();
         transform.position = Vector3.Lerp(transform.position, destination, speed/10);
 	}
@@ -45,8 +73,16 @@ public class EnemySequence : MonoBehaviour {
         foreach(GameObject enemy in enemyArray)
         {
             everyEnemy.Add(enemy);
+            if(enemy.transform.position.y < lowestBeePos)
+            {
+                lowestBeePos = enemy.transform.position.y;
+                lowestBee = enemy;
+            }
         }
-
+        if (lowestBee != null)
+        {
+            poslow.position = new Vector2(poslow.position.x, lowestBeePos - lowestBee.transform.localScale.y);
+        }
         enemyCount = everyEnemy.Count;
 
     }
@@ -65,7 +101,7 @@ public class EnemySequence : MonoBehaviour {
         switch (direction)
         {
             case moveDir.down:
-                destination = new Vector3(transform.position.x, transform.position.y - moveLength, transform.position.z);
+                destination = new Vector3(transform.position.x, transform.position.y - downLength, transform.position.z);
                 break;
 
             case moveDir.up:
@@ -88,7 +124,7 @@ public class EnemySequence : MonoBehaviour {
         for (int i = 0; i < maxMove; i++)
         {
             Move(moveDir.right);
-            while (frozen)
+            while (frozen || isStuck)
             {
                 yield return new WaitForSeconds(0.05f);
             }
@@ -99,7 +135,7 @@ public class EnemySequence : MonoBehaviour {
         {
             //Move Down
             
-            while (frozen)
+            while (frozen || isStuck)
             {
                 yield return new WaitForSeconds(0.05f);
             }
@@ -110,7 +146,7 @@ public class EnemySequence : MonoBehaviour {
             for (int i = 0; i < maxMove * 2; i++)
             {
                 
-                while (frozen)
+                while (frozen || isStuck)
                 {
                     yield return new WaitForSeconds(0.05f);
                 }
@@ -120,7 +156,7 @@ public class EnemySequence : MonoBehaviour {
 
             //Move Down
             
-            while (frozen)
+            while (frozen || isStuck)
             {
                 yield return new WaitForSeconds(0.05f);
             }
@@ -131,7 +167,7 @@ public class EnemySequence : MonoBehaviour {
             for (int i = 0; i < maxMove * 2; i++)
             {
                 
-                while (frozen)
+                while (frozen || isStuck)
                 {
                     yield return new WaitForSeconds(0.05f);
                 }

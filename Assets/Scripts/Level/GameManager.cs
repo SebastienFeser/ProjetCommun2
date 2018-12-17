@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour {
         {
             looseText.SetActive(true);
             enemySequenceScript.Stop();
+            player.enabled = false;
+            enemySequenceScript.enabled = false;
         }
 
         if(enemySequenceScript.EnemyCount <= 0 && callOnce)
@@ -66,6 +68,8 @@ public class GameManager : MonoBehaviour {
             winText.SetActive(true);
             inventoryScript.ModifyItem(levelID, true);
             inventoryScript.ModifyItem(14, false, money + addedMoney);
+            player.enabled = false;
+            enemySequenceScript.enabled = false;
         }
 	}
 
@@ -89,6 +93,7 @@ public class GameManager : MonoBehaviour {
     public void AsLost()
     {
         loose = true;
+
     }
 
     public void Retry()
