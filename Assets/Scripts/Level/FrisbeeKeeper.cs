@@ -28,6 +28,7 @@ public class FrisbeeKeeper : MonoBehaviour {
     // Use this for initialization
     private void Awake()
     {
+        Time.timeScale = 1;
         DontDestroyOnLoad(this);
     }
 }

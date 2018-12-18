@@ -26,33 +26,36 @@ public class PlayerInMap : MonoBehaviour {
     private Vector2 lastPos;
     private int firstStart;
 	void Awake () {
+        Time.timeScale = 1;
         firstStart = PlayerPrefs.GetInt("FirstStart");
+        float x = PlayerPrefs.GetFloat("LastPosX");
+        float y = PlayerPrefs.GetFloat("LastPosY");
 
         if (firstStart == 0)
         {
-            float x = PlayerPrefs.GetFloat("LastPosX");
-            float y = PlayerPrefs.GetFloat("LastPosY");
-            transform.position = new Vector2(x, y);
-            //lastPosTransform.position = new Vector2(x,y);
+            PlayerPrefs.SetFloat("LastPosX", -2.43f);
+            PlayerPrefs.SetFloat("LastPosY", 3.93f);
+
+            x = PlayerPrefs.GetFloat("LastPosX");
+            y = PlayerPrefs.GetFloat("LastPosY");
+            lastPosTransform.position = new Vector2(x, y);
+            PlayerPrefs.SetInt("FirstStart", 1);
+
         }
         else
         {
-            //lastPosTransform.position = transform.position;
-            PlayerPrefs.SetFloat("LastPosX", -2.43f);
-            PlayerPrefs.SetFloat("LastPosY", 3.93f);
-            PlayerPrefs.SetInt("FirstStart", 0);
-
+            lastPosTransform.position = new Vector2(x, y);
+            transform.position = lastPosTransform.position;
 
         }
-        transform.position = lastPosTransform.position;
         destination = lastPosTransform;
 	}
-	
-	void Update () {
 
-        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, destination.transform.position, playerSpeed);
+	void Update () {
         PlayerPrefs.SetFloat("LastPosX", transform.position.x);
         PlayerPrefs.SetFloat("LastPosY", transform.position.y);
+        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, destination.transform.position, playerSpeed);
+
 
         if (playerRigidBody.velocity.magnitude < 0.1f)
         {
@@ -79,6 +82,8 @@ public class PlayerInMap : MonoBehaviour {
 
         if (Input.GetButtonDown("Select") && isInside && levelLoader)
         {
+            Debug.Log(PlayerPrefs.GetFloat("LastPosX"));
+            Debug.Log(PlayerPrefs.GetFloat("LastPosY"));
             source.PlayOneShot(sound);
             Invoke("LoadDelay", 0.2f);
         }

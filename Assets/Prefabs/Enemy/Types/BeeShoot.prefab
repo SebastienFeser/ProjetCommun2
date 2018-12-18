@@ -231,7 +231,7 @@ MonoBehaviour:
   shootIntervalMin: 1
   shootIntervalMax: 2
   type: 1
-  value: 150
+  value: 15
   life: 1
   enemyGaz: []
   enemyElectric: []
