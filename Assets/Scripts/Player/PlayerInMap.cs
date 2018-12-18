@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInMap : MonoBehaviour {
     float playerSpeed = 0.1f;
@@ -13,21 +14,48 @@ public class PlayerInMap : MonoBehaviour {
     GameObject right;
 
     [SerializeField] Rigidbody2D playerRigidBody;
+    [SerializeField] Transform lastPosTransform;
+    [SerializeField] AudioClip sound;
+    [SerializeField] AudioSource source;
 
     Transform destination;
+    private bool isInside;
 
-    public int levelToSelect;
+    private string levelToSelect;
+    private bool levelLoader;
 
+
+    private Vector2 lastPos;
+    private int firstStart;
 	// Use this for initialization
-	void Start () {
-        destination = transform;
+	void Awake () {
+        firstStart = PlayerPrefs.GetInt("FirstStart");
+
+        if (firstStart == 0)
+        {
+            float x = PlayerPrefs.GetFloat("LastPosX");
+            float y = PlayerPrefs.GetFloat("LastPosY");
+            transform.position = new Vector2(x, y);
+            //lastPosTransform.position = new Vector2(x,y);
+        }
+        else
+        {
+            //lastPosTransform.position = transform.position;
+            PlayerPrefs.SetFloat("LastPosX", -2.43f);
+            PlayerPrefs.SetFloat("LastPosY", 3.93f);
+            PlayerPrefs.SetInt("FirstStart", 0);
+
+
+        }
+        transform.position = lastPosTransform.position;
+        destination = lastPosTransform;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
         gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, destination.transform.position, playerSpeed);
-
+        PlayerPrefs.SetFloat("LastPosX", transform.position.x);
+        PlayerPrefs.SetFloat("LastPosY", transform.position.y);
 
         if (playerRigidBody.velocity.magnitude < 0.1f)
         {
@@ -52,78 +80,41 @@ public class PlayerInMap : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Select") && isInside && levelLoader)
         {
-            switch (levelToSelect)
-            {
-                case 0:
-                    break;
-                case 1:
-                    //Load Level 1
-                    break;
-                case 2:
-                    //Load Level 2
-                    break;
-                case 3:
-                    //Load Level 3
-                    break;
-                case 4:
-                    //Load Level 4
-                    break;
-                case 5:
-                    //Load Level 5
-                    break;
-                case 6:
-                    //Load Level 6
-                    break;
-                case 7:
-                    //Load Level 7
-                    break;
-                case 8:
-                    //Load Level 8
-                    break;
-                case 9:
-                    //Load Level 9
-                    break;
-                case 10:
-                    //Load Level 10
-                    break;
-                case 31:
-                    //Load Shop 1
-                    break;
-                case 32:
-                    //Load Shop 2
-                    break;
-                case 33:
-                    //Load Shop 3
-                    break;
-                default:
-                    break;
-
-            }
+            source.PlayOneShot(sound);
+            Invoke("LoadDelay", 0.2f);
         }
+    }
+
+    void LoadDelay()
+    {
+        SceneManager.LoadScene(levelToSelect);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "MapPoint")
         {
-            
+            isInside = true;
             up = collision.gameObject.GetComponent<MapPoints>().upPoint;
             down = collision.gameObject.GetComponent<MapPoints>().downPoint;
             left = collision.gameObject.GetComponent<MapPoints>().leftPoint;
             right = collision.gameObject.GetComponent<MapPoints>().rightPoint;
-            levelToSelect = collision.gameObject.GetComponent<MapPoints>().levelSelection;
+            levelToSelect = collision.gameObject.GetComponent<MapPoints>().LevelSelection;
+            levelLoader = collision.gameObject.GetComponent<MapPoints>().LevelLoader;
+
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        isInside = false;
         up = null;
         down = null;
         left = null;
         right = null;
-        levelToSelect = 0;
+        levelToSelect = "";
     }
 
 

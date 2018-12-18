@@ -1622,6 +1622,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToLoad: Level_1
+  sound: {fileID: 8300000, guid: be2baa3ec1a41c141ab3c1568fe9de4c, type: 3}
+  source: {fileID: 686635597}
 --- !u!114 &710509460
 MonoBehaviour:
   m_ObjectHideFlags: 0

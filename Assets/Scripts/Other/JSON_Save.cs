@@ -207,6 +207,17 @@ public class JSON_Save : MonoBehaviour {
         WriteJson(13, false, 100); //Max life
         WriteJson(14, false, 0); //Money
 
+        WriteJson(15, false, 0); 
+        WriteJson(16, false, 0);
+        WriteJson(17, false, 0);
+        WriteJson(18, false, 0);
+        WriteJson(19, false, 0);
+        WriteJson(20, false, 0);
+        WriteJson(21, false, 0);
+        WriteJson(22, false, 0);
+        WriteJson(23, false, 0);
+        WriteJson(24, false, 0);
+
 
     }
 }

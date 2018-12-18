@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour {
     
     private void Start()
     {
+        mapLevel = "Map";
         levelID += 14;
         frisbeeKeeper = GameObject.FindGameObjectWithTag("FrisbeeKeeper");
         thisLevel = SceneManager.GetActiveScene().name + "_Intro";
