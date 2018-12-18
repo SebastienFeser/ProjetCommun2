@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class LoadLevel : MonoBehaviour {
 
     [SerializeField] private string levelName;
+    [SerializeField] private AudioClip sound;
+    [SerializeField] private AudioSource source;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +21,13 @@ public class LoadLevel : MonoBehaviour {
 
     public void Load()
     {
+        source.PlayOneShot(sound);
+        Invoke("LoadDelay", 0.2f);
+    }
+
+     void LoadDelay()
+    {
         SceneManager.LoadScene(levelName);
+
     }
 }

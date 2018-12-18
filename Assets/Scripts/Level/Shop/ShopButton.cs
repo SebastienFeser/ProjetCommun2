@@ -26,6 +26,8 @@ public class ShopButton : MonoBehaviour {
         "\n" +
         "\n 13: MaxLife" +
         "\n 14: Money")]
+    [SerializeField] private AudioClip sound;
+    [SerializeField] private AudioSource source;
     [SerializeField] private Inventory inventoryScript;
     [SerializeField] private Toggle lockState;
     [SerializeField] private TextMeshProUGUI propertyText;
@@ -136,6 +138,8 @@ public class ShopButton : MonoBehaviour {
     }
 
     public void BuyFrisbee() {
+        source.PlayOneShot(sound);
+
         if (price < currentMoney && !maxedUpgrade)
         {
             inventoryScript.ModifyItem(14, false, currentMoney - price);
@@ -144,15 +148,6 @@ public class ShopButton : MonoBehaviour {
         }
 
         GetMoney();
-    }
-
-    public void ResetJSON()
-    {
-        for(int i = 0; i < 14; i++)
-        {
-            inventoryScript.ModifyItem(i, false, 0);
-        }
-        inventoryScript.ModifyItem(14, false, 2500); //SET money
     }
 
     void check()
