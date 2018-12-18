@@ -30,4 +30,15 @@ public class LoadLevel : MonoBehaviour {
         SceneManager.LoadScene(levelName);
 
     }
+
+    public void Leave()
+    {
+        source.PlayOneShot(sound);
+        Invoke("LeaveDelay", 0.2f);
+    }
+
+    void LeaveDelay()
+    {
+        Application.Quit();
+    }
 }
