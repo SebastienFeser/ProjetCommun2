@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerMovements : MonoBehaviour {
+    [SerializeField] GameManager GM;
     [SerializeField] Rigidbody2D playerRigidBody2D;
     [SerializeField] float playerMovementSpeed = 5f;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] float life = 100;
     public float Life
     {
@@ -18,10 +20,12 @@ public class PlayerMovements : MonoBehaviour {
     bool isMovingRight;
     bool isMovingLeft;
 
+    private Animator animatorComponent;
+
 	void Start () {
-
-
+        animatorComponent = spriteRenderer.GetComponent<Animator>();
         lifeBarSize = life;
+        Invoke("SetLife", 0.2f);
 	}
 	
 	void Update () {
@@ -40,7 +44,11 @@ public class PlayerMovements : MonoBehaviour {
             isMovingLeft = false;
             isMovingRight = false;
         }
-	}
+
+        spriteRenderer.flipX = isMovingRight;
+        bool isWalking = isMovingLeft || isMovingRight;
+        animatorComponent.SetBool("isWalking", isWalking);
+    }
 
     private void FixedUpdate()
     {
@@ -68,5 +76,11 @@ public class PlayerMovements : MonoBehaviour {
             lifeBar.fillAmount = life / lifeBarSize;
             Destroy(collision.gameObject);
         }
+    }
+
+    void SetLife()
+    {
+        life = GM.MaxLife;
+        lifeBarSize = life;
     }
 }

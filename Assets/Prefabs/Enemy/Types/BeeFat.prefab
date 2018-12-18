@@ -217,7 +217,7 @@ MonoBehaviour:
   shootPrefab: {fileID: 0}
   shootIntervalMin: 0
   shootIntervalMax: 0
-  type: 0
+  type: 2
   value: 150
   life: 3
   enemyGaz: []

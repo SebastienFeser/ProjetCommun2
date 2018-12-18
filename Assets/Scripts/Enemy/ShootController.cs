@@ -61,6 +61,10 @@ public class ShootController : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        if(collision.gameObject.tag == "Roof")
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

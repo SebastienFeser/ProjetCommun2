@@ -348,7 +348,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1610966955347960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.41, z: 0}
+  m_LocalPosition: {x: 0, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4666522033376682}
@@ -726,13 +726,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveLength: 1.5
+  downLength: 2
   speed: 0.5
   time: 2
   rowSpawnerScript: {fileID: 114106541121591722}
   maxMove: 2
   freezeTime: 10
   everyEnemy: []
+  poslow: {fileID: 0}
+  destroyBlock: 0
   enemyCount: 0
+  lowestBeePos: 0
+  lowestBee: {fileID: 0}
 --- !u!114 &114549357257249790
 MonoBehaviour:
   m_ObjectHideFlags: 1

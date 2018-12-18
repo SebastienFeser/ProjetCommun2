@@ -32,8 +32,10 @@ public class EnemyController : MonoBehaviour {
     private bool frozen;
     private EnemySequence enemySequenceScript;
     private FxPlayer audioPlayer;
+    private SpriteRenderer spr;
 
     void Start () {
+        spr = GetComponent<SpriteRenderer>();
         audioPlayer = GameObject.FindGameObjectWithTag("FxPlayer").GetComponent<FxPlayer>();
         gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         enemySequenceScript = GameObject.FindGameObjectWithTag("EnemySequence").GetComponent<EnemySequence>();
@@ -62,6 +64,23 @@ public class EnemyController : MonoBehaviour {
         {
             StartCoroutine("ShootTimer");
             Invoke("Shoot",0);
+        }
+        
+        if (type == beeType.fat)
+        {
+            switch (life)
+            {
+                case 3:
+                    spr.color = new Color(1, 1, 1);
+                    break;
+                case 2:
+                    spr.color = new Color(1, .8f, .8f);
+                    break;
+                case 1:
+                    spr.color = new Color(1, .5f, .5f);
+                    break;
+
+            }
         }
 	}
 
@@ -179,6 +198,11 @@ public class EnemyController : MonoBehaviour {
         audioPlayer.PlaySound(FxPlayer.sounds.normalHit);
         gameManagerScript.AddMoney(value);
         Instantiate(particlesDeath, enemyToDestroy.transform.position, Quaternion.identity);
-        Destroy(enemyToDestroy);
+        life--;
+
+        if(life <= 0)
+        {
+            Destroy(enemyToDestroy);
+        }
     }
 }

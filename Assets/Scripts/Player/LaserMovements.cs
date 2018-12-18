@@ -10,6 +10,9 @@ public class LaserMovements : MonoBehaviour {
     [SerializeField] float frisbeeSpeed;
     [SerializeField] GameObject frisbeeGameObject;
     [SerializeField] float pointerSpeed;
+    [SerializeField] GameManager GM;
+
+    [SerializeField] private float iceCooldown, iceFreezeTime, fireCooldown, electricCooldown, gazCooldown;
 
     private EnemyController.deathType type;
     public EnemyController.deathType Type
@@ -63,9 +66,16 @@ public class LaserMovements : MonoBehaviour {
         type = EnemyController.deathType.normal;
         StartCoroutine("moveLeft");
         transform.eulerAngles = new Vector3(0, 0, minimumAngle);
-	}
-	
-	void Update () {
+
+        iceCooldown = GM.IceCooldown;
+        iceFreezeTime = GM.IceFreezeTime;
+        fireCooldown = GM.FireCooldown;
+        electricCooldown = GM.ElectricCooldown;
+        gazCooldown = GM.GazCooldown;
+
+    }
+
+    void Update () {
         if (Input.GetKeyDown(KeyCode.W))
         {
 
