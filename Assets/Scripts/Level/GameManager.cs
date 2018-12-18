@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour {
             enemySequenceScript.Stop();
             player.enabled = false;
             enemySequenceScript.enabled = false;
+            Time.timeScale = 0;
         }
 
         if(enemySequenceScript.EnemyCount <= 0 && callOnce)
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour {
             player.enabled = false;
             player.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             enemySequenceScript.enabled = false;
+            Time.timeScale = 0;
         }
 	}
 

@@ -109,6 +109,21 @@ public class PlayerInMap : MonoBehaviour {
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "MapPoint")
+        {
+            isInside = true;
+            up = collision.gameObject.GetComponent<MapPoints>().upPoint;
+            down = collision.gameObject.GetComponent<MapPoints>().downPoint;
+            left = collision.gameObject.GetComponent<MapPoints>().leftPoint;
+            right = collision.gameObject.GetComponent<MapPoints>().rightPoint;
+            levelToSelect = collision.gameObject.GetComponent<MapPoints>().LevelSelection;
+            levelLoader = collision.gameObject.GetComponent<MapPoints>().LevelLoader;
+
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         isInside = false;
