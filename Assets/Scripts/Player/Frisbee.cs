@@ -23,8 +23,10 @@ public class Frisbee : MonoBehaviour {
     }
 
     private Animator animatorComponent;
+    private FxPlayer audioPlayer;
 
-	void Start () {
+    void Start () {
+        audioPlayer = GameObject.FindGameObjectWithTag("FxPlayer").GetComponent<FxPlayer>();
         animatorComponent = trail.GetComponentInChildren<Animator>();
         frisbeeRigidbody.velocity = frisbeeSpeed;
         SpriteRenderer spr = GetComponentInChildren<SpriteRenderer>();
@@ -85,6 +87,7 @@ public class Frisbee : MonoBehaviour {
         else if (collision.tag == "Roof")
         {
             particleScript.Detatch();
+            audioPlayer.PlaySound(FxPlayer.sounds.normalHit);
             Destroy(gameObject);
         }
         else if(collision.tag == "Enemy")
@@ -94,6 +97,7 @@ public class Frisbee : MonoBehaviour {
             {
                 collision.gameObject.GetComponent<EnemyController>().DestroyBee(typeFrisbee);
                 particleScript.Detatch();
+                audioPlayer.PlaySound(FxPlayer.sounds.normalHit);
                 Destroy(gameObject);
             }
             else
@@ -104,6 +108,7 @@ public class Frisbee : MonoBehaviour {
         else if (collision.tag == "Block")
         {
             collision.gameObject.GetComponent<Block>().LowerLife(5);
+            audioPlayer.PlaySound(FxPlayer.sounds.normalHit);
             Destroy(gameObject);
         }
     }

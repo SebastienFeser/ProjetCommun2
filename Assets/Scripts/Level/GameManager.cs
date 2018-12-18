@@ -16,7 +16,35 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private Inventory inventoryScript;
     [SerializeField] private int levelID;
     [SerializeField] private TextMeshProUGUI textMoney;
-    [SerializeField] private int money, addedMoney;
+    [SerializeField] private float money, addedMoney;
+    [SerializeField] private float iceCooldown, iceFreezeTime, fireCooldown, electricCooldown, gazCooldown, maxLife;
+    public float IceCooldown
+    {
+        get { return iceCooldown; }
+    }
+    public float IceFreezeTime
+    {
+        get { return iceFreezeTime; }
+    }
+    public float FireCooldown
+    {
+        get { return fireCooldown; }
+    }
+    public float ElectricCooldown
+    {
+        get { return electricCooldown; }
+    }
+    public float GazCooldown
+    {
+        get { return gazCooldown; }
+    }
+    public float MaxLife
+    {
+        get { return maxLife; }
+    }
+
+
+
 
     private bool callOnce = true;
     
@@ -47,6 +75,8 @@ public class GameManager : MonoBehaviour {
         {
             gaz.SetActive(true);
         }
+
+        Invoke("GetStats", 0.1f);
     }
 
     // Update is called once per frame
@@ -76,12 +106,23 @@ public class GameManager : MonoBehaviour {
 
     void GetMoney()
     {
-        int mon = 0 ;
+        float mon = 0 ;
         bool fooBool;
         inventoryScript.GetItemState(out fooBool, out mon, 14);
         money = mon;
         textMoney.text = "Money : " + money.ToString();
        
+    }
+
+    void GetStats()
+    {
+        bool foobool;
+        inventoryScript.GetItemState(out foobool, out iceCooldown, 1);
+        inventoryScript.GetItemState(out foobool, out iceFreezeTime, 2);
+        inventoryScript.GetItemState(out foobool, out fireCooldown, 4);
+        inventoryScript.GetItemState(out foobool, out gazCooldown, 6);
+        inventoryScript.GetItemState(out foobool, out electricCooldown, 8);
+        inventoryScript.GetItemState(out foobool, out maxLife, 13);
     }
 
     public void AddMoney(int moneyToAdd) {

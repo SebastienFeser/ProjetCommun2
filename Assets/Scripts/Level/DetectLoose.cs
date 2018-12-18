@@ -25,17 +25,17 @@ public class DetectLoose : MonoBehaviour {
         switch (distanceUntilLoose)
         {
             case -7:
-                speed = 2;
+                speed = 5;
                 break;
             case -5:
-                speed = 4;
+                speed = 10;
                 break;
             case -3:
-                speed = 8;
+                speed = 20;
                 shootRoof.SetActive(true);
                 break;
             case -1:
-                speed = 16;
+                speed = 40;
                 break;
         }
         spr.color = color;
@@ -53,13 +53,13 @@ public class DetectLoose : MonoBehaviour {
     {
 
         while (true) {
-            for (float i = 0; i < 0.2f; i += 0.01f)
+            for (float i = 0; i < 0.5f; i += 0.01f)
             {
                 color = new Color(1, 0, 0, i);
                 yield return new WaitForSeconds(1/(speed*5));
             }
 
-            for (float i = 0.2f; i > 0; i -= 0.01f)
+            for (float i = 0.5f; i > 0; i -= 0.01f)
             {
                 color = new Color(1, 0, 0, i);
                 yield return new WaitForSeconds(1/(speed*5));

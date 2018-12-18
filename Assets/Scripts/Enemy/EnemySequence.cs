@@ -46,9 +46,11 @@ public class EnemySequence : MonoBehaviour {
     }
 
     private PosLow posLowScript;
-    
+    private FxPlayer audioPlayer;
 
-	void Start () {
+
+    void Start () {
+        audioPlayer = GameObject.FindGameObjectWithTag("FxPlayer").GetComponent<FxPlayer>();
         posLowScript = poslow.GetComponent<PosLow>();
         lowestBee = gameObject;
         lowestBeePos = 150;
@@ -181,6 +183,7 @@ public class EnemySequence : MonoBehaviour {
 
    public IEnumerator Freeze()
     {
+        audioPlayer.PlaySound(FxPlayer.sounds.iceFroze);
         frozen = true;
         ToggleIce(true);
         yield return new WaitForSeconds(freezeTime);

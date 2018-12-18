@@ -22,7 +22,7 @@ public class FrisbeeSelector : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        int valuefoo = 0;
+        float valuefoo = 0;
         inventoryScript.GetItemState(out hasIce, out valuefoo, 0);
         inventoryScript.GetItemState(out hasFire, out valuefoo, 3);
         inventoryScript.GetItemState(out hasGaz, out valuefoo, 5);
