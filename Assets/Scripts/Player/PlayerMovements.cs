@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerMovements : MonoBehaviour {
+    [SerializeField] private AudioClip clip;
+    [SerializeField] private AudioSource source;
     [SerializeField] GameManager GM;
     [SerializeField] Rigidbody2D playerRigidBody2D;
     [SerializeField] float playerMovementSpeed = 5f;
@@ -75,6 +77,7 @@ public class PlayerMovements : MonoBehaviour {
             life -= projectilesDamages;
             lifeBar.fillAmount = life / lifeBarSize;
             Destroy(collision.gameObject);
+            source.PlayOneShot(clip);
         }
     }
 
