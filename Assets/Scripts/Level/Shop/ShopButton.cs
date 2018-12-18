@@ -139,7 +139,7 @@ public class ShopButton : MonoBehaviour {
 
     public void BuyFrisbee() {
 
-        if (price < currentMoney && !maxedUpgrade)
+        if (price <= currentMoney && !maxedUpgrade)
         {
             source.PlayOneShot(sound);
             inventoryScript.ModifyItem(14, false, currentMoney - price);

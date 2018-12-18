@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour {
             inventoryScript.ModifyItem(levelID, true);
             inventoryScript.ModifyItem(14, false, money + addedMoney);
             player.enabled = false;
+            player.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             enemySequenceScript.enabled = false;
         }
 	}
