@@ -7,7 +7,6 @@ public class EnemySequence : MonoBehaviour {
     [SerializeField] private float speed, time;
     [SerializeField] private RowSpawner rowSpawnerScript;
     [SerializeField] private int maxMove = 5;
-    [SerializeField] private int freezeTime;
     [SerializeField] private List<GameObject> everyEnemy;
     [SerializeField] private Transform poslow;
     [SerializeField] private bool destroyBlock;
@@ -20,6 +19,11 @@ public class EnemySequence : MonoBehaviour {
     public int EnemyCount
     {
         get { return enemyCount; }
+    }
+    [SerializeField] private int freezeTime;
+    public float FreezeTime
+    {
+        set { freezeTime = (int)value; }
     }
 
     public float lowestBeePos;

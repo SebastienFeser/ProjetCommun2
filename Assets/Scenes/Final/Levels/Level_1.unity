@@ -315,12 +315,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114070632910067466, guid: 5d3c813c15a5661419191e2430299d0c,
+    - target: {fileID: 114083433912260442, guid: 5d3c813c15a5661419191e2430299d0c,
         type: 2}
       propertyPath: enemySequenceScript
       value: 
       objectReference: {fileID: 1886996364}
-    - target: {fileID: 114070632910067466, guid: 5d3c813c15a5661419191e2430299d0c,
+    - target: {fileID: 114083433912260442, guid: 5d3c813c15a5661419191e2430299d0c,
+        type: 2}
+      propertyPath: posLowScript
+      value: 
+      objectReference: {fileID: 301223999}
+    - target: {fileID: 114089225626053032, guid: 5d3c813c15a5661419191e2430299d0c,
+        type: 2}
+      propertyPath: enemySequenceScript
+      value: 
+      objectReference: {fileID: 1886996364}
+    - target: {fileID: 114089225626053032, guid: 5d3c813c15a5661419191e2430299d0c,
         type: 2}
       propertyPath: posLowScript
       value: 
@@ -335,22 +345,12 @@ Prefab:
       propertyPath: posLowScript
       value: 
       objectReference: {fileID: 301223999}
-    - target: {fileID: 114713404404816798, guid: 5d3c813c15a5661419191e2430299d0c,
+    - target: {fileID: 114291147444045072, guid: 5d3c813c15a5661419191e2430299d0c,
         type: 2}
       propertyPath: enemySequenceScript
       value: 
       objectReference: {fileID: 1886996364}
-    - target: {fileID: 114713404404816798, guid: 5d3c813c15a5661419191e2430299d0c,
-        type: 2}
-      propertyPath: posLowScript
-      value: 
-      objectReference: {fileID: 301223999}
-    - target: {fileID: 114083433912260442, guid: 5d3c813c15a5661419191e2430299d0c,
-        type: 2}
-      propertyPath: enemySequenceScript
-      value: 
-      objectReference: {fileID: 1886996364}
-    - target: {fileID: 114083433912260442, guid: 5d3c813c15a5661419191e2430299d0c,
+    - target: {fileID: 114291147444045072, guid: 5d3c813c15a5661419191e2430299d0c,
         type: 2}
       propertyPath: posLowScript
       value: 
@@ -1371,6 +1371,16 @@ Prefab:
         type: 2}
       propertyPath: posTypes.Array.data[2]
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114336396951952018, guid: dc0df22298154034b9dcdff59829b075,
+        type: 2}
+      propertyPath: speed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114336396951952018, guid: dc0df22298154034b9dcdff59829b075,
+        type: 2}
+      propertyPath: time
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc0df22298154034b9dcdff59829b075, type: 2}

@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour {
         bool foobool;
         inventoryScript.GetItemState(out foobool, out iceCooldown, 1);
         inventoryScript.GetItemState(out foobool, out iceFreezeTime, 2);
+        enemySequenceScript.FreezeTime = iceFreezeTime;
         inventoryScript.GetItemState(out foobool, out fireCooldown, 4);
         inventoryScript.GetItemState(out foobool, out gazCooldown, 6);
         inventoryScript.GetItemState(out foobool, out electricCooldown, 8);

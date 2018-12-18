@@ -14,6 +14,7 @@ public class LaserMovements : MonoBehaviour {
 
     [SerializeField] private float iceCooldown, iceFreezeTime, fireCooldown, electricCooldown, gazCooldown;
 
+
     private EnemyController.deathType type;
     public EnemyController.deathType Type
     {
@@ -67,11 +68,7 @@ public class LaserMovements : MonoBehaviour {
         StartCoroutine("moveLeft");
         transform.eulerAngles = new Vector3(0, 0, minimumAngle);
 
-        iceCooldown = GM.IceCooldown;
-        iceFreezeTime = GM.IceFreezeTime;
-        fireCooldown = GM.FireCooldown;
-        electricCooldown = GM.ElectricCooldown;
-        gazCooldown = GM.GazCooldown;
+        Invoke("GetStats", 0.2f);
 
     }
 
@@ -154,6 +151,24 @@ public class LaserMovements : MonoBehaviour {
             
         }
 	}
+
+    void GetStats()
+    {
+        iceCooldown = GM.IceCooldown;
+        iceCoolDownTime = iceCooldown;
+
+        iceFreezeTime = GM.IceFreezeTime;
+
+        fireCooldown = GM.FireCooldown;
+        fireCoolDownTime = fireCooldown;
+
+        electricCooldown = GM.ElectricCooldown;
+        electricCoolDownTime = electricCooldown;
+
+        gazCooldown = GM.GazCooldown;
+        gazCoolDownTime = gazCooldown;
+    }
+
 
     IEnumerator moveLeft()
     {
