@@ -29,10 +29,10 @@ public class DetectLoose : MonoBehaviour {
                 break;
             case -5:
                 speed = 10;
+                shootRoof.SetActive(true);
                 break;
             case -3:
                 speed = 20;
-                shootRoof.SetActive(true);
                 break;
             case -1:
                 speed = 40;
