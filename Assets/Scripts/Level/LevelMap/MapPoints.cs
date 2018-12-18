@@ -20,8 +20,17 @@ public class MapPoints : MonoBehaviour {
 
     bool canMove = true;
     bool levelPassed = false;
-    
-	void Start () {
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.1f);
+        Gizmos.DrawLine(new Vector2(transform.position.x - 0.5f, transform.position.y), new Vector2(transform.position.x + 0.5f, transform.position.y));
+        Gizmos.DrawLine(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(transform.position.x, transform.position.y - 0.5f));
+
+    }
+
+    void Start () {
         // if levelPassed, all can move = true
 
         if (!canMoveUp)
