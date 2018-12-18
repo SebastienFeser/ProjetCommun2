@@ -26,7 +26,7 @@ public class PlayerInMap : MonoBehaviour {
     private Vector2 lastPos;
     private int firstStart;
 	void Awake () {
-        /*firstStart = PlayerPrefs.GetInt("FirstStart");
+        firstStart = PlayerPrefs.GetInt("FirstStart");
 
         if (firstStart == 0)
         {
@@ -44,15 +44,15 @@ public class PlayerInMap : MonoBehaviour {
 
 
         }
-        transform.position = lastPosTransform.position;*/
-        destination = transform;
+        transform.position = lastPosTransform.position;
+        destination = lastPosTransform;
 	}
 	
 	void Update () {
 
         gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, destination.transform.position, playerSpeed);
-        /*PlayerPrefs.SetFloat("LastPosX", transform.position.x);
-        PlayerPrefs.SetFloat("LastPosY", transform.position.y);*/
+        PlayerPrefs.SetFloat("LastPosX", transform.position.x);
+        PlayerPrefs.SetFloat("LastPosY", transform.position.y);
 
         if (playerRigidBody.velocity.magnitude < 0.1f)
         {
