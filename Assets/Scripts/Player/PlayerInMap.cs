@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 public class PlayerInMap : MonoBehaviour {
     float playerSpeed = 0.1f;
 
-
-
     GameObject up;
     GameObject down;
     GameObject left;
@@ -27,9 +25,8 @@ public class PlayerInMap : MonoBehaviour {
 
     private Vector2 lastPos;
     private int firstStart;
-	// Use this for initialization
 	void Awake () {
-        firstStart = PlayerPrefs.GetInt("FirstStart");
+        /*firstStart = PlayerPrefs.GetInt("FirstStart");
 
         if (firstStart == 0)
         {
@@ -47,15 +44,15 @@ public class PlayerInMap : MonoBehaviour {
 
 
         }
-        transform.position = lastPosTransform.position;
-        destination = lastPosTransform;
+        transform.position = lastPosTransform.position;*/
+        destination = transform;
 	}
 	
 	void Update () {
 
         gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, destination.transform.position, playerSpeed);
-        PlayerPrefs.SetFloat("LastPosX", transform.position.x);
-        PlayerPrefs.SetFloat("LastPosY", transform.position.y);
+        /*PlayerPrefs.SetFloat("LastPosX", transform.position.x);
+        PlayerPrefs.SetFloat("LastPosY", transform.position.y);*/
 
         if (playerRigidBody.velocity.magnitude < 0.1f)
         {
