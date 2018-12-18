@@ -32,7 +32,7 @@ public class FrisbeeChanger : MonoBehaviour {
                 break;
 
             case EnemyController.deathType.electric:
-                imageCurrent.sprite = normal;
+                imageCurrent.sprite = electric;
                 break;
 
             case EnemyController.deathType.gaz:

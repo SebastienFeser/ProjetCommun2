@@ -141,12 +141,14 @@ public class GameManager : MonoBehaviour {
 
     public void Retry()
     {
+        Time.timeScale = 1;
         Destroy(frisbeeKeeper);
         SceneManager.LoadScene(thisLevel);
     }
 
     public void ReturnMap()
     {
+        Time.timeScale = 1;
         Destroy(frisbeeKeeper);
         SceneManager.LoadScene(mapLevel);
     }
