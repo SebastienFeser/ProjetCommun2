@@ -261,7 +261,7 @@ MonoBehaviour:
   frisbeeSpeed: 25
   frisbeeGameObject: {fileID: 1727157098129742, guid: 3855982368979544baa8bda1f34d5ea5,
     type: 2}
-  pointerSpeed: 1
+  pointerSpeed: 0.9
   GM: {fileID: 0}
   iceCooldown: 0
   iceFreezeTime: 0
