@@ -7,16 +7,18 @@ public class Inventory : MonoBehaviour {
 
     [SerializeField] private bool ice_Obtained, fire_Obtained, gaz_Obtained, electric_Obtained, shield_Obtained, shield_SendBack;
     [SerializeField] private bool lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9, lvl10;
-    [SerializeField] private int ice_Cooldown, ice_FreezeTime, fire_Cooldown, gaz_Cooldown, electric_Cooldown, shield_Cooldown, shield_ActiveTime, maxLife, money;
+    [SerializeField] private float ice_Cooldown, ice_FreezeTime, fire_Cooldown, gaz_Cooldown, electric_Cooldown, shield_Cooldown, shield_ActiveTime, maxLife, money;
 
     void Start () {
         jsonSave.ReadJson();
         UpdateInventory(jsonSave.valuesState);
+        ModifyItem(14, false, 99999);
+
     }
 
-    public void ModifyItem(int ID, bool state = default(bool), int value = default(int))
+    public void ModifyItem(int ID, bool state = default(bool), float value = default(int))
     {
-        jsonSave.WriteJson(ID, state, value);
+        jsonSave.WriteJson(ID, state, Mathf.Round(value * 10) / 10);
         jsonSave.ReadJson();
         UpdateInventory(jsonSave.valuesState);
     }
@@ -55,7 +57,7 @@ public class Inventory : MonoBehaviour {
 
     }
 
-    public void GetItemState(out bool state, out int value, int id)
+    public void GetItemState(out bool state, out float value, int id)
     {
         state = false;
         value = 0;

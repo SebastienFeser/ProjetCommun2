@@ -7,7 +7,6 @@ public class EnemySequence : MonoBehaviour {
     [SerializeField] private float speed, time;
     [SerializeField] private RowSpawner rowSpawnerScript;
     [SerializeField] private int maxMove = 5;
-    [SerializeField] private int freezeTime;
     [SerializeField] private List<GameObject> everyEnemy;
     [SerializeField] private Transform poslow;
     [SerializeField] private bool destroyBlock;
@@ -20,6 +19,11 @@ public class EnemySequence : MonoBehaviour {
     public int EnemyCount
     {
         get { return enemyCount; }
+    }
+    [SerializeField] private int freezeTime;
+    public float FreezeTime
+    {
+        set { freezeTime = (int)value; }
     }
 
     public float lowestBeePos;
@@ -46,9 +50,11 @@ public class EnemySequence : MonoBehaviour {
     }
 
     private PosLow posLowScript;
-    
+    private FxPlayer audioPlayer;
 
-	void Start () {
+
+    void Start () {
+        audioPlayer = GameObject.FindGameObjectWithTag("FxPlayer").GetComponent<FxPlayer>();
         posLowScript = poslow.GetComponent<PosLow>();
         lowestBee = gameObject;
         lowestBeePos = 150;
@@ -181,6 +187,7 @@ public class EnemySequence : MonoBehaviour {
 
    public IEnumerator Freeze()
     {
+        audioPlayer.PlaySound(FxPlayer.sounds.iceFroze);
         frozen = true;
         ToggleIce(true);
         yield return new WaitForSeconds(freezeTime);

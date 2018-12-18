@@ -10,6 +10,10 @@ public class LaserMovements : MonoBehaviour {
     [SerializeField] float frisbeeSpeed;
     [SerializeField] GameObject frisbeeGameObject;
     [SerializeField] float pointerSpeed;
+    [SerializeField] GameManager GM;
+
+    [SerializeField] private float iceCooldown, iceFreezeTime, fireCooldown, electricCooldown, gazCooldown;
+
 
     private EnemyController.deathType type;
     public EnemyController.deathType Type
@@ -29,7 +33,7 @@ public class LaserMovements : MonoBehaviour {
             return frisbeeVectorSpeed;
         }
     }
-
+    private FxPlayer audioPlayer;
     #region Used for Speed Calculator
     float frisbeeXVelocity;
     float frisbeeYVelocity;
@@ -59,12 +63,16 @@ public class LaserMovements : MonoBehaviour {
     #endregion
 
     void Start () {
+        audioPlayer = GameObject.FindGameObjectWithTag("FxPlayer").GetComponent<FxPlayer>();
         type = EnemyController.deathType.normal;
         StartCoroutine("moveLeft");
         transform.eulerAngles = new Vector3(0, 0, minimumAngle);
-	}
-	
-	void Update () {
+
+        Invoke("GetStats", 0.2f);
+
+    }
+
+    void Update () {
         if (Input.GetKeyDown(KeyCode.W))
         {
 
@@ -73,12 +81,15 @@ public class LaserMovements : MonoBehaviour {
                 case EnemyController.deathType.normal:
                     if (canShootNormal)
                     {
+                        audioPlayer.PlaySound(FxPlayer.sounds.normalShoot);
+
                         frisbeeVectorSpeed = SpeedCalculator();
                         GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
                         frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
                         frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
 
                         StartCoroutine("normalFrisbeeCoolDown");
+
                         canShootNormal = false;
                     }
                     break;
@@ -92,6 +103,8 @@ public class LaserMovements : MonoBehaviour {
                         Debug.Log("test");
 
                         StartCoroutine("electricFrisbeeCoolDown");
+                        audioPlayer.PlaySound(FxPlayer.sounds.electricShoot);
+
                         canShootElectric = false;
                     }
                     break;
@@ -102,6 +115,7 @@ public class LaserMovements : MonoBehaviour {
                         GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
                         frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
                         frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+                        audioPlayer.PlaySound(FxPlayer.sounds.gazShoot);
 
                         StartCoroutine("gazFrisbeeCoolDown");
                         canShootGaz = false;
@@ -114,6 +128,7 @@ public class LaserMovements : MonoBehaviour {
                         GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
                         frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
                         frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+                        audioPlayer.PlaySound(FxPlayer.sounds.iceShoot);
 
                         StartCoroutine("iceFrisbeeCoolDown");
                         canShootIce = false;
@@ -126,6 +141,7 @@ public class LaserMovements : MonoBehaviour {
                         GameObject frisbee = Instantiate(frisbeeGameObject, gameObject.transform.position, Quaternion.identity);
                         frisbee.GetComponent<Frisbee>().TypeFrisbee = type;
                         frisbee.GetComponent<Frisbee>().FrisbeeSpeed = frisbeeVectorSpeed;
+                        audioPlayer.PlaySound(FxPlayer.sounds.fireShoot);
 
                         StartCoroutine("fireFrisbeeCoolDown");
                         canShootFire = false;
@@ -135,6 +151,24 @@ public class LaserMovements : MonoBehaviour {
             
         }
 	}
+
+    void GetStats()
+    {
+        iceCooldown = GM.IceCooldown;
+        iceCoolDownTime = iceCooldown;
+
+        iceFreezeTime = GM.IceFreezeTime;
+
+        fireCooldown = GM.FireCooldown;
+        fireCoolDownTime = fireCooldown;
+
+        electricCooldown = GM.ElectricCooldown;
+        electricCoolDownTime = electricCooldown;
+
+        gazCooldown = GM.GazCooldown;
+        gazCoolDownTime = gazCooldown;
+    }
+
 
     IEnumerator moveLeft()
     {

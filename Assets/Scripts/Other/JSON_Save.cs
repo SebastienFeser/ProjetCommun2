@@ -13,25 +13,25 @@ public class JSON_Save : MonoBehaviour {
     public class Values
     {
         public bool Ice_Obtained;
-        public int Ice_Cooldown;
-        public int Ice_FreezeTime;
+        public float Ice_Cooldown;
+        public float Ice_FreezeTime;
 
         public bool Fire_Obtained;
-        public int Fire_Cooldown;
+        public float Fire_Cooldown;
 
         public bool Gaz_Obtained;
-        public int Gaz_Cooldown;
+        public float Gaz_Cooldown;
 
         public bool Electric_Obtained;
-        public int Electric_Cooldown;
+        public float Electric_Cooldown;
 
         public bool Shield_Obtained;
-        public int Shield_Cooldown;
-        public int Shield_ActiveTime;
+        public float Shield_Cooldown;
+        public float Shield_ActiveTime;
         public bool Shield_SendBack;
 
-        public int MaxLife;
-        public int Money;
+        public float MaxLife;
+        public float Money;
 
         public bool lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9, lvl10;
     }
@@ -39,11 +39,15 @@ public class JSON_Save : MonoBehaviour {
 
     private void Awake()
     {
+        if (!System.IO.File.Exists(Application.dataPath + "/Inventory.json"))
+        {
+            CreateNewJSON();
+        }
         valuesState = new Values();
         ReadJson();
     }
 
-    public void WriteJson(int valueToChange, bool state = default(bool), int valueInt = default(int))
+    public void WriteJson(int valueToChange, bool state = default(bool), float valueInt = default(float))
     {
         switch (valueToChange)
         {
@@ -168,9 +172,9 @@ public class JSON_Save : MonoBehaviour {
 
         File.WriteAllText(Application.dataPath + "/Inventory.json", json);
 
-        #if UNITY_EDITOR
+       /* #if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
-        #endif
+        #endif*/
 
     }
 
@@ -178,5 +182,31 @@ public class JSON_Save : MonoBehaviour {
     {
         json = File.ReadAllText(Application.dataPath + "/Inventory.json");
         valuesState = JsonUtility.FromJson<Values>(json);
+    }
+
+    void CreateNewJSON()
+    {
+        WriteJson(0, false, 0); //Ice Obtained
+        WriteJson(1, false, 5); //Ice Cooldown
+        WriteJson(2, false, 2); //Ice freezetime
+
+        WriteJson(3, false, 0); //Fire obtained
+        WriteJson(4, false, 5); //fire cooldown
+
+        WriteJson(5, false, 0); //gaz obtained
+        WriteJson(6, false, 5); //gaz cooldown
+
+        WriteJson(7, false, 0); //electric obtained
+        WriteJson(8, false, 5); //electric cooldown
+
+        WriteJson(9, false, 0); //shield obtained
+        WriteJson(10, false, 0); //shield cooldown
+        WriteJson(11, false, 0); //shield active time
+        WriteJson(12, false, 0); //shield sendback
+
+        WriteJson(13, false, 100); //Max life
+        WriteJson(14, false, 0); //Money
+
+
     }
 }

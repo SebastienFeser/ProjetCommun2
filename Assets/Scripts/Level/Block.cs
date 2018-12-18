@@ -6,13 +6,13 @@ public class Block : MonoBehaviour {
 
     [SerializeField] private EnemySequence enemySequenceScript;
     [SerializeField] private PosLow posLowScript;
+    [SerializeField] private SpriteRenderer spr;
 
     [SerializeField] private float life;
     private SpriteRenderer spRenderer;
 
 	// Use this for initialization
 	void Start () {
-        spRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -43,7 +43,7 @@ public class Block : MonoBehaviour {
     {
  
         life -= lifeToDecrease;
-        spRenderer.material.color = new Color(1, life / 100, life / 100);
+        spr.material.color = new Color(1, life / 200, life / 200);
 
     }
 }
