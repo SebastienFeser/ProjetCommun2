@@ -21,11 +21,12 @@ public class PlayerInMap : MonoBehaviour {
 
     private string levelToSelect;
     private bool levelLoader;
-
+    private bool movelock;
 
     private Vector2 lastPos;
     private int firstStart;
 	void Awake () {
+        movelock = true;
         Time.timeScale = 1;
         firstStart = PlayerPrefs.GetInt("FirstStart");
         float x = PlayerPrefs.GetFloat("LastPosX");
@@ -49,43 +50,51 @@ public class PlayerInMap : MonoBehaviour {
 
         }
         destination = lastPosTransform;
+        Invoke("Unlock", 0.2f);
 	}
+
+    void Unlock()
+    {
+        movelock = false;
+    }
 
 	void Update () {
         PlayerPrefs.SetFloat("LastPosX", transform.position.x);
         PlayerPrefs.SetFloat("LastPosY", transform.position.y);
         gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, destination.transform.position, playerSpeed);
 
-
-        if (playerRigidBody.velocity.magnitude < 0.1f)
+        if (!movelock)
         {
-            if (Input.GetButtonDown("Left") && left != null)
+            if (playerRigidBody.velocity.magnitude < 0.1f)
             {
-                destination = left.transform;
+                if (Input.GetButtonDown("Left") && left != null)
+                {
+                    destination = left.transform;
+                }
+
+                if (Input.GetButtonDown("Right") && right != null)
+                {
+                    destination = right.transform;
+                }
+
+                if (Input.GetButtonDown("Up") && up != null)
+                {
+                    destination = up.transform;
+                }
+
+                if (Input.GetButtonDown("Down") && down != null)
+                {
+                    destination = down.transform;
+                }
             }
 
-            if (Input.GetButtonDown("Right") && right != null)
+            if (Input.GetButtonDown("Select") && isInside && levelLoader)
             {
-                destination = right.transform;
+                Debug.Log(PlayerPrefs.GetFloat("LastPosX"));
+                Debug.Log(PlayerPrefs.GetFloat("LastPosY"));
+                source.PlayOneShot(sound);
+                Invoke("LoadDelay", 0.2f);
             }
-
-            if (Input.GetButtonDown("Up") && up != null)
-            {
-                destination = up.transform;
-            }
-
-            if (Input.GetButtonDown("Down") && down != null)
-            {
-                destination = down.transform;
-            }
-        }
-
-        if (Input.GetButtonDown("Select") && isInside && levelLoader)
-        {
-            Debug.Log(PlayerPrefs.GetFloat("LastPosX"));
-            Debug.Log(PlayerPrefs.GetFloat("LastPosY"));
-            source.PlayOneShot(sound);
-            Invoke("LoadDelay", 0.2f);
         }
     }
 

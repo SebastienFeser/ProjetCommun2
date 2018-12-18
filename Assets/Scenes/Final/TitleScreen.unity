@@ -145,7 +145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 231}
+  m_AnchoredPosition: {x: 0.035004, y: -39.99997}
   m_SizeDelta: {x: 673.4, y: 168.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &102641554
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 8.078947
+  m_padding: 0
   m_canvasRenderer: {fileID: 112044891}
   m_TextComponent: {fileID: 1946245667}
   m_materialReferenceIndex: 1
@@ -666,7 +666,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: eac34c1f5169efa44b922fa668c872b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4f238eb740a89447ad0a9373becc4cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1237,7 +1237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -186.1}
+  m_AnchoredPosition: {x: 207.7, y: -370}
   m_SizeDelta: {x: 415.4, y: 124.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1713609949
@@ -1371,7 +1371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -62}
+  m_AnchoredPosition: {x: -207.7, y: -370}
   m_SizeDelta: {x: 415.4, y: 124.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1779164892
@@ -1493,8 +1493,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.035004, y: -428.3}
-  m_SizeDelta: {x: 877.9, y: 174}
+  m_AnchoredPosition: {x: 0.035004, y: -483.9}
+  m_SizeDelta: {x: 877.9, y: 62.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1946245667
 MonoBehaviour:
@@ -1515,7 +1515,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "Stephen Grosjean / Sebastien Feser \n Jade Copex"
+  m_text: " Jade Copex\nStephen Grosjean / Sebastien Feser \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e9dd6530937e5d145a0533a5a51218d2, type: 2}
   m_sharedMaterial: {fileID: 21531250715347834, guid: e9dd6530937e5d145a0533a5a51218d2,
@@ -1543,7 +1543,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30.15
+  m_fontSize: 35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1581,13 +1581,13 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 119.44282, z: 0, w: 0}
+  m_margin: {x: 0, y: -0.57121265, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1946245667}
-    characterCount: 47
+    characterCount: 48
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 6
+    spaceCount: 9
+    wordCount: 7
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -1649,7 +1649,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 291}
+  m_AnchoredPosition: {x: 0.035004, y: 40}
   m_SizeDelta: {x: 673.4, y: 168.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2024848674
